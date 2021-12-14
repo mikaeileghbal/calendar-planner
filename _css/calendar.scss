@@ -53,12 +53,13 @@ body {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	align-items: flex-end;
+	align-items: center;
 
 	.app-title {
 		font-size: 1em;
 		//font-weight: 600;
-		color: rgb(104, 101, 101);
+		color: $gray;
+		margin-right: 3em;
 	}
 
 	.current-year {
@@ -566,4 +567,34 @@ input[type="text"] {
 	color: gray;
 	text-decoration: line-through;
 	transition: all 0.3s;
+}
+
+.button {
+	border: 1px solid silver;
+	padding: 0.7em 1em;
+	font-size: 0.6em;
+	font-weight: 600;
+	background-color: rgba(255, 255, 255, 0.5);
+	color: $gray;
+	border-radius: 4px;
+	margin-right: 2em;
+	text-transform: capitalize;
+	transition: background-color 0.125s;
+
+	&--prev,
+	&--next {
+		padding: 0.6em 1em;
+		background-color: rgba(255, 255, 255, 0);
+		border: none;
+		border-radius: 50%;
+		margin-right: 0.1em;
+	}
+
+	&:hover {
+		background-color: rgb(221, 216, 216);
+	}
+
+	&:active {
+		background-color: rgb(190, 188, 188);
+	}
 }
