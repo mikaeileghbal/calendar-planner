@@ -48,11 +48,12 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 }
 .year-header .app-title {
   font-size: 1em;
   color: #686565;
+  margin-right: 3em;
 }
 .year-header .current-year {
   cursor: pointer;
@@ -464,4 +465,30 @@ input[type=text]:valid {
   color: gray;
   text-decoration: line-through;
   transition: all 0.3s;
+}
+
+.button, .todo__container .todo .button--delete, .todo__container .todo .button--check {
+  border: 1px solid silver;
+  padding: 0.7em 1em;
+  font-size: 0.6em;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #686565;
+  border-radius: 4px;
+  margin-right: 2em;
+  text-transform: capitalize;
+  transition: background-color 0.125s;
+}
+.button--prev, .button--next {
+  padding: 0.6em 1em;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  border-radius: 50%;
+  margin-right: 0.1em;
+}
+.button:hover, .todo__container .todo .button--delete:hover, .todo__container .todo .button--check:hover {
+  background-color: #ddd8d8;
+}
+.button:active, .todo__container .todo .button--delete:active, .todo__container .todo .button--check:active {
+  background-color: #bebcbc;
 }/*# sourceMappingURL=calendar.css.map */
