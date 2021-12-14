@@ -4,7 +4,7 @@ let headerYear = document.querySelector(".current-year");
 let headerToday = document.querySelector(".today");
 
 
-let currentYear = "2023"; //new Date().getFullYear();
+let currentYear = new Date().getFullYear();
 let thisDate = new Date();
 
 thisDate = setCurrentYear(thisDate, currentYear);
