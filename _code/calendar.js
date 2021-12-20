@@ -1,15 +1,14 @@
 /* Set the date displayed in the calendar */
-//var thisDate = new Date("September 24, 2021");
+
 let headerYear = document.querySelector(".current-year");
 let headerToday = document.querySelector(".today");
 
-
-let currentYear = "2023"; //new Date().getFullYear();
+let currentYear = new Date().getFullYear();
 let thisDate = new Date();
 
 thisDate = setCurrentYear(thisDate, currentYear);
 
-var calendarContainer = document.getElementById("calendar");
+let calendarContainer = document.getElementById("calendar");
 let daycounter = 0;
 
 
@@ -25,10 +24,10 @@ function createYear(thisDate) {
 	headerYear.innerText = thisDate.getFullYear();
 	headerToday.innerText = thisDate.getDate();
 
-	var output = "<div class='year-container'>";
+	let output = "<div class='year-container'>";
 	//let monthIndex = 0;
 	for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
-		var monthDate = new Date(thisDate.getFullYear(), monthIndex, 1);
+		let monthDate = new Date(thisDate.getFullYear(), monthIndex, 1);
 
 		/* Write the calendar to the div with ID 'calendar' */
 		output += createCalendar(monthDate);
@@ -40,7 +39,7 @@ function createYear(thisDate) {
 /* Function to generate calendar Table */
 function createCalendar(calDate) {
 
-	var calendareHtml = "<div class='month-container'>";
+	let calendareHtml = "<div class='month-container'>";
 	calendareHtml += "<table id='calendar_table' class='calendar_table'>";
 	calendareHtml += calCaption(calDate);
 	calendareHtml += calWeakdayRow();
@@ -54,7 +53,7 @@ function createCalendar(calDate) {
 /* function to write the calendar caption */
 
 function calCaption(calDate) {
-	var monthName = [
+	let monthName = [
 		"January",
 		"February",
 		"March",
@@ -70,10 +69,10 @@ function calCaption(calDate) {
 	];
 
 	// determine the current month
-	var thisMonth = calDate.getMonth();
+	let thisMonth = calDate.getMonth();
 
 	//determine the current year
-	var thisYear = calDate.getFullYear();
+	let thisYear = calDate.getFullYear();
 
 	return (
 		`<caption id="${monthName[thisMonth]}">` +
@@ -87,8 +86,8 @@ function calCaption(calDate) {
 
 // function to write the table row of weakday names
 function calWeakdayRow() {
-	var weakdays = ["S", "M", "T", "W", "T", "F", "S"];
-	var rowHtml = "<tr>";
+	let weakdays = ["S", "M", "T", "W", "T", "F", "S"];
+	let rowHtml = "<tr>";
 
 	for (let i = 0; i < weakdays.length; i++) {
 		rowHtml += "<th class='calendar-weakdays'>" + weakdays[i] + "</th>";
@@ -101,11 +100,11 @@ function calWeakdayRow() {
 //function to calculate the numbers of days in the month
 function daysInMonth(calDate) {
 	// Array of days in each month
-	var dayCount = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+	let dayCount = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 	//Extract the four digit year and month values
-	var thisYear = calDate.getFullYear();
-	var thisMonth = calDate.getMonth();
+	let thisYear = calDate.getFullYear();
+	let thisMonth = calDate.getMonth();
 
 	//Revise the days in February for Leap years
 	if (thisYear % 4 === 0) {
@@ -121,25 +120,25 @@ function daysInMonth(calDate) {
 //Fnction to write table rows for each day of the month
 function calDays(calDate) {
 	//Determine the startin day of the month
-	var day = new Date(calDate.getFullYear(), calDate.getMonth(), 1);
-	var weekDay = day.getDay();
+	let day = new Date(calDate.getFullYear(), calDate.getMonth(), 1);
+	let weekDay = day.getDay();
 
 	//Write blank cells preceding the starting day
-	var htmlCode = "<tr>";
-	for (var i = 0; i < weekDay; i++) {
+	let htmlCode = "<tr>";
+	for (let i = 0; i < weekDay; i++) {
 		htmlCode += "<td class='empty'><div class='empty-day'></div></td>";
 	}
 
 	//Write cells for each day of the month
-	var totalDays = daysInMonth(calDate);
+	let totalDays = daysInMonth(calDate);
 
-	var highlightDay = new Date().getDate();
-	var highlightMonth = new Date().getMonth();
+	let highlightDay = new Date().getDate();
+	let highlightMonth = new Date().getMonth();
 	let sat = "";
 	let fri = "";
 	console.log(highlightDay, highlightMonth);
 
-	for (var i = 1; i <= totalDays; i++) {
+	for (let i = 1; i <= totalDays; i++) {
 		day.setDate(i);
 		weekDay = day.getDay();
 
@@ -171,10 +170,10 @@ function calDays(calDate) {
 	}
 
 	//add extra empty days to table
-	var day = new Date(calDate.getFullYear(), calDate.getMonth(), totalDays);
-	var weekDay = day.getDay();
+	day = new Date(calDate.getFullYear(), calDate.getMonth(), totalDays);
+	weekDay = day.getDay();
 
-	for (var i = weekDay + 1; i < 7; i++) {
+	for (let i = weekDay + 1; i < 7; i++) {
 		htmlCode += "<td class='empty'><div class='empty-day'></div></td>";
 	}
 	htmlCode += "</tr>";

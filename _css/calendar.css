@@ -210,29 +210,6 @@ caption {
   background-color: #e22424;
 }
 
-/*
-thead{
-    background: rgb(163,0,153);
-    color: white;
-
-    tr{
-        height: 1.2em;
-    }
-}
-
-tbody{
-    background: white;
-
-    tr{
-        height: 1.2em
-    }
-}
-
-tfoot{
-    background: black;
-    color: white;
-}
-*/
 table a {
   text-decoration: none;
   color: #2956ac;
