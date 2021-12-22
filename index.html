@@ -24,49 +24,32 @@
         </div>
     </header>
 
-    <div id="calendar" class="calendar">
-    </div>
+    <section class="section-main">
+        <div id="calendar" class="calendar">
+        </div>
 
-    <button class="month-btn--previous"><span class="arrow">&#10094</span><span></span></button>
-    <button class="month-btn--next"><span></span><span class="arrow">&#10095</span></button>
-
-    <a href="#" class="btn-add">+</a>
-
-    <div class="add-item__countainer">
-        <div class="add-item__frame">
-            <h1>Add new note</h1>
-            <form id="add-item__form">
-                <input type="text" id="add-item__input" required placeholder="Title">
-                <div class="add-item__wraper">
-                    <button class="month-btn--cancel">Cancel</button>
-                    <button class="month-btn--save">Save</button>
+        <div class="side-panel">
+            <header class="side-panel__header">
+                <h1>Notes</h1>
+                <button class="button button--close">&#10006</button>
+            </header>
+            <section class="side-panel__body">
+                <div class="title-date">
+                    <h4>29 December 2021</h4>
                 </div>
-            </form>
-        </div>
-    </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis repudiandae quis quae optio? Excepturi
+                    est mollitia, repellendus quam voluptatum veniam quos ratione aliquid exercitationem sequi fugit,
+                    maiores necessitatibus fuga numquam?</p>
+            </section>
 
-    <div class="todo__container">
-        <div class="todo">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-            <button class="button--check first">Check</button>
-            <button class="button--delete">Delete</button>
         </div>
-        <div class="todo">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-            <button class="button--check first">Check</button>
-            <button class="button--delete">Delete</button>
-        </div>
-        <div class="todo">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-            <button class="button--check first">Check</button>
-            <button class="button--delete">Delete</button>
-        </div>
-    </div>
+    </section>
+
 
     <script src="_code/todo.js"></script>
-    <script src="_code/events.js" ></script>
+    <script src="_code/events.js"></script>
     <!-- <script src="_code/calendar.js" ></script> -->
-    <script src="_code/app.js" type="module" ></script>
+    <script src="_code/app.js" type="module"></script>
 
 
 </body>
