@@ -1,7 +1,14 @@
-* {
+:root {
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 /* hide scrollbar */
@@ -13,10 +20,6 @@
 ::-webkit-scrollbar-thumb {
   background-color: gray;
   border-radius: 4px;
-}
-
-:root {
-  font-size: 20px;
 }
 
 body {
@@ -99,17 +102,17 @@ section {
 }
 
 .year-container {
-  width: 90%;
+  width: 100%;
   height: 91vh;
   overflow: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1em;
   align-items: stretch;
-  margin: 0em 1em 0em;
+  margin: 0em 0em 0em;
   background-color: #f8f3eb;
   border-radius: 50px;
-  padding: 1em auto;
+  padding: 1em 0;
 }
 
 .year-container--expand {
@@ -422,25 +425,6 @@ input[type=text]:valid {
 .todo__container .todo .first {
   margin-left: auto;
 }
-.todo__container .todo .button, .todo__container .todo .button--check, .todo__container .todo .button--delete {
-  padding: 0.5em 1em;
-  border: none;
-  font-size: 0.9em;
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0);
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-.todo__container .todo .button:hover, .todo__container .todo .button--check:hover, .todo__container .todo .button--delete:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-.todo__container .todo .button--delete {
-  margin-left: 0.5em;
-  color: #e23550;
-}
-.todo__container .todo .button--check {
-  color: #e23550;
-}
 
 .todo__container.show {
   display: block;
@@ -452,7 +436,7 @@ input[type=text]:valid {
   transition: all 0.3s;
 }
 
-.button, .todo__container .todo .button--delete, .todo__container .todo .button--check {
+.button, .button--close, .button--circle {
   border: 1px solid silver;
   padding: 0.7em 1em;
   font-size: 0.6em;
@@ -463,8 +447,9 @@ input[type=text]:valid {
   margin-right: 2em;
   text-transform: capitalize;
   transition: background-color 0.125s;
+  cursor: pointer;
 }
-.button--prev, .button--next {
+.button--circle {
   padding: 0.6em 1em;
   background-color: rgba(255, 255, 255, 0);
   border: none;
@@ -491,18 +476,33 @@ input[type=text]:valid {
   width: 38px;
   height: 38px;
 }
-.button:hover, .todo__container .todo .button--delete:hover, .todo__container .todo .button--check:hover {
+.button:hover, .button--circle:hover, .button--close:hover {
   background-color: #ddd8d8;
 }
-.button:active, .todo__container .todo .button--delete:active, .todo__container .todo .button--check:active {
+.button:active, .button--circle:active, .button--close:active {
   background-color: #bebcbc;
+}
+
+#btnOpenNotes {
+  color: red;
+}
+
+/* Side Menu Styles */
+.side-menu {
+  padding: 0.5em;
+  background-color: #f8f3eb;
 }
 
 /* Side panel styles */
 .side-panel {
+  display: none;
   width: 350px;
   background-color: #f8f3eb;
   box-shadow: rgba(0, 0, 0, 0.2) -1px 0px 4px;
+}
+
+.side-panel.active {
+  display: block;
 }
 
 .side-panel__header {
