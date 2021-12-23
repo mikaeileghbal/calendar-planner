@@ -9,6 +9,9 @@ let calendarContainer = document.getElementById("calendar");
 let btnToday = document.querySelector("#btnToday");
 let btnPreviousYear = document.querySelector("#btnPreviousYear");
 let btnNextYear = document.querySelector("#btnNextYear");
+let btnCloseSidePanel = document.querySelector("#btnCloseSidePanel");
+let sidePanel = document.querySelector(".side-panel");
+let btnOpenNotes = document.querySelector("#btnOpenNotes");
 
 let currentYear = new Date().getFullYear();
 let thisDate = new Date();
@@ -53,6 +56,14 @@ btnPreviousYear.addEventListener("click", (e) => {
 btnNextYear.addEventListener("click", (e) => {
   currentYear++;
   updateCalendar();
+});
+
+btnCloseSidePanel.addEventListener("click", (e) => {
+  sidePanel.classList.remove("active");
+});
+
+btnOpenNotes.addEventListener("click", (e) => {
+  sidePanel.classList.toggle("active");
 });
 
 function updateCalendar() {
