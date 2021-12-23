@@ -16,8 +16,8 @@
         <div class='year-header'>
             <span class='app-title'>Calendar</span>
             <button id="btnToday" class="button button--today">today</button>
-            <button id="btnPreviousYear" class="button button--prev">&#10094</button>
-            <button id="btnNextYear" class="button button--next">&#10095</button>
+            <button id="btnPreviousYear" class="button button--circle">&#10094</button>
+            <button id="btnNextYear" class="button button--circle">&#10095</button>
             <span class='current-year'></span>
             <span class='time'></span>
             <span class='today'></span>
@@ -28,10 +28,13 @@
         <div id="calendar" class="calendar">
         </div>
 
+        <div class="side-menu">
+            <button id=btnOpenNotes class="button--close">&#128221</button>
+        </div>
         <div class="side-panel">
             <header class="side-panel__header">
                 <h1>Notes</h1>
-                <button class="button button--close">&#10006</button>
+                <button id="btnCloseSidePanel" class="button--close">&#10006</button>
             </header>
             <section class="side-panel__body">
                 <div class="title-date">
