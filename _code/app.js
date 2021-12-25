@@ -4,6 +4,36 @@ import createYear, {
   setCalendarContainer,
 } from "./calendar.js";
 
+let notes = [
+  {
+    date: "202112/20",
+    description: "Today I am going to meet my friend.",
+    todo: ["Meeting", "Reading", "Working"],
+  },
+  {
+    date: "202112/20",
+    description: "Today I am going to meet my friend.",
+    todo: ["Meeting", "Reading", "Working"],
+  },
+  {
+    date: "202112/20",
+    description: "Today I am going to meet my friend.",
+    todo: ["Meeting", "Reading", "Working"],
+  },
+  {
+    date: "202112/20",
+    description: "Today I am going to meet my friend.",
+    todo: ["Meeting", "Reading", "Working"],
+  },
+  {
+    date: "202112/20",
+    description: "Today I am going to meet my friend.",
+    todo: ["Meeting", "Reading", "Working"],
+  },
+];
+
+console.log(notes);
+
 let calendarContainer = document.getElementById("calendar");
 
 let btnToday = document.querySelector("#btnToday");
