@@ -4,6 +4,36 @@ import createYear, {
   setCalendarContainer,
 } from "./calendar.js";
 
+let notes = [
+  {
+    date: "202112/20",
+    description: "Today I am going to meet my friend.",
+    todo: ["Meeting", "Reading", "Working"],
+  },
+  {
+    date: "202112/20",
+    description: "Today I am going to meet my friend.",
+    todo: ["Meeting", "Reading", "Working"],
+  },
+  {
+    date: "202112/20",
+    description: "Today I am going to meet my friend.",
+    todo: ["Meeting", "Reading", "Working"],
+  },
+  {
+    date: "202112/20",
+    description: "Today I am going to meet my friend.",
+    todo: ["Meeting", "Reading", "Working"],
+  },
+  {
+    date: "202112/20",
+    description: "Today I am going to meet my friend.",
+    todo: ["Meeting", "Reading", "Working"],
+  },
+];
+
+console.log(notes);
+
 let calendarContainer = document.getElementById("calendar");
 
 let btnToday = document.querySelector("#btnToday");
@@ -13,8 +43,10 @@ let btnCloseSidePanel = document.querySelector("#btnCloseSidePanel");
 let sidePanel = document.querySelector(".side-panel");
 let btnOpenNotes = document.querySelector("#btnOpenNotes");
 
-let currentYear = new Date().getFullYear();
-let thisDate = new Date();
+let currentYear =
+  localStorage.getItem("currentYear") || new Date().getFullYear();
+
+let thisDate = new Date(currentYear);
 
 // Show clock on top of page
 let clock = document.querySelector(".time");
@@ -68,6 +100,7 @@ btnOpenNotes.addEventListener("click", (e) => {
 
 function updateCalendar() {
   setCurrentYear(thisDate, currentYear);
+  saveYearToLOcal(currentYear);
   createYear(thisDate);
   updateHeaderTitles();
 
@@ -85,4 +118,8 @@ function updateHeaderTitles() {
 function setCurrentYear(date, year) {
   date.setFullYear(year);
   return date;
+}
+
+function saveYearToLOcal(year) {
+  localStorage.setItem("currentYear", year);
 }
