@@ -91,10 +91,10 @@ section {
     background-color: $red;
   }
   .today {
-    border: 8px solid $red;
+    border: 5px solid $red;
     font-size: 0.6em;
     font-weight: 600;
-    padding: 0.1em;
+    padding: 0.1em 0.5em;
     border-radius: 4px;
     position: relative;
     text-align: center;
@@ -119,7 +119,7 @@ section {
   margin: 0em 0em 0em;
   background-color: $creame;
   border-radius: 50px;
-  padding: 1em 0;
+  padding: 1em 2em;
 }
 
 //month view styles starts
@@ -448,40 +448,6 @@ input[type="text"] {
   justify-content: space-between;
 }
 
-.todo__container {
-  display: none;
-  font-size: 0.8em;
-  font-weight: 400;
-  color: white;
-  //background-color: aliceblue;
-
-  .todo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0.2em auto;
-    padding: 0.5em;
-    width: 50%;
-    border: 1px solid $creame;
-    border-radius: 10px;
-    //background-color: aqua;
-
-    .first {
-      margin-left: auto;
-    }
-  }
-}
-
-.todo__container.show {
-  display: block;
-}
-
-.checked {
-  color: gray;
-  text-decoration: line-through;
-  transition: all 0.3s;
-}
-
 @mixin button-circle {
   padding: 0.6em 1em;
   background-color: rgba(255, 255, 255, 0);
@@ -586,4 +552,35 @@ input[type="text"] {
   .title-date {
     text-align: left;
   }
+}
+
+.todo__container {
+  //background-color: aqua;
+  padding: 0.5em 0;
+}
+
+.todo__empty {
+  color: red;
+  font-size: 0.8em;
+  margin-top: 3em;
+}
+
+.todo__row {
+  //background-color: red;
+  margin-top: 0.5em;
+}
+
+.todo__label {
+  font-size: 0.7em;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.1s linear;
+}
+
+.todo__label.checked {
+  color: gray;
+  text-decoration: line-through;
+}
+.todo__check {
+  margin-right: 0.5em;
 }
