@@ -73,7 +73,21 @@ window.addEventListener("load", () => {
 function addListenerToDays(days) {
   days.forEach((day) => {
     day.addEventListener("click", (e) => {
-      console.log(e.target.dataset.daynumber);
+      days.forEach((day) => {
+        day.classList.remove("selected");
+      });
+      day.classList.add("selected");
+
+      const dayNumber = e.target.dataset.daynumber;
+
+      const selectedDate = new Date(
+        dayNumber.slice(0, 4),
+        dayNumber.slice(4, 6),
+        dayNumber.slice(6, 8)
+      );
+      console.log(selectedDate);
+      document.querySelector(".side-panel_date").innerText =
+        selectedDate.toDateString();
     });
   });
 }
