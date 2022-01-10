@@ -42,11 +42,15 @@ let btnNextYear = document.querySelector("#btnNextYear");
 let btnCloseSidePanel = document.querySelector("#btnCloseSidePanel");
 let sidePanel = document.querySelector(".side-panel");
 let btnOpenNotes = document.querySelector("#btnOpenNotes");
+const todoLabel = document.querySelectorAll(".todo__label");
+console.log(todoLabel);
 
 let currentYear =
   localStorage.getItem("currentYear") || new Date().getFullYear();
 
 let thisDate = new Date(currentYear);
+thisDate.setDate(new Date().getDate());
+thisDate.setMonth(new Date().getMonth());
 
 // Show clock on top of page
 let clock = document.querySelector(".time");
@@ -69,7 +73,21 @@ window.addEventListener("load", () => {
 function addListenerToDays(days) {
   days.forEach((day) => {
     day.addEventListener("click", (e) => {
-      console.log(e.target.dataset.daynumber);
+      days.forEach((day) => {
+        day.classList.remove("selected");
+      });
+      day.classList.add("selected");
+
+      const dayNumber = e.target.dataset.daynumber;
+
+      const selectedDate = new Date(
+        dayNumber.slice(0, 4),
+        dayNumber.slice(4, 6),
+        dayNumber.slice(6, 8)
+      );
+      console.log(selectedDate);
+      document.querySelector(".side-panel_date").innerText =
+        selectedDate.toDateString();
     });
   });
 }
@@ -96,6 +114,12 @@ btnCloseSidePanel.addEventListener("click", (e) => {
 
 btnOpenNotes.addEventListener("click", (e) => {
   sidePanel.classList.toggle("active");
+});
+
+todoLabel.forEach((label) => {
+  label.addEventListener("click", (e) => {
+    e.target.classList.toggle("checked");
+  });
 });
 
 function updateCalendar() {

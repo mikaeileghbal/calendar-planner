@@ -86,10 +86,10 @@ section {
   background-color: #e23550;
 }
 .year-header .today {
-  border: 8px solid #e23550;
+  border: 5px solid #e23550;
   font-size: 0.6em;
   font-weight: 600;
-  padding: 0.1em;
+  padding: 0.1em 0.5em;
   border-radius: 4px;
   position: relative;
   text-align: center;
@@ -112,7 +112,7 @@ section {
   margin: 0em 0em 0em;
   background-color: #f8f3eb;
   border-radius: 50px;
-  padding: 1em 0;
+  padding: 1em 2em;
 }
 
 .year-container--expand {
@@ -245,6 +245,9 @@ div.days {
   text-align: center;
 }
 div.days:hover {
+  background-color: rgba(226, 53, 80, 0.3);
+}
+div.days.selected {
   background-color: rgba(226, 53, 80, 0.3);
 }
 
@@ -406,36 +409,6 @@ input[type=text]:valid {
   justify-content: space-between;
 }
 
-.todo__container {
-  display: none;
-  font-size: 0.8em;
-  font-weight: 400;
-  color: white;
-}
-.todo__container .todo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0.2em auto;
-  padding: 0.5em;
-  width: 50%;
-  border: 1px solid #f8f3eb;
-  border-radius: 10px;
-}
-.todo__container .todo .first {
-  margin-left: auto;
-}
-
-.todo__container.show {
-  display: block;
-}
-
-.checked {
-  color: gray;
-  text-decoration: line-through;
-  transition: all 0.3s;
-}
-
 .button, .button--close, .button--circle {
   border: 1px solid silver;
   padding: 0.7em 1em;
@@ -532,4 +505,40 @@ input[type=text]:valid {
 }
 .side-panel__body .title-date {
   text-align: left;
+}
+.side-panel__body .title-date .side-panel_date {
+  font-size: 0.8em;
+}
+
+.todo__container {
+  padding: 0.5em 0;
+}
+
+.todo__empty {
+  color: red;
+  font-size: 0.8em;
+  margin-top: 3em;
+}
+
+.todo__row {
+  margin-top: 0.5em;
+}
+
+.todo__label {
+  font-size: 0.7em;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  transition: all 0.1s linear;
+}
+
+.todo__label.checked {
+  color: gray;
+  text-decoration: line-through;
+}
+
+.todo__check {
+  margin-right: 0.5em;
 }/*# sourceMappingURL=calendar.css.map */

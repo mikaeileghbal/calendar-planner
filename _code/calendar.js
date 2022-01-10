@@ -133,7 +133,15 @@ function calDays(calDate) {
     day.setDate(i);
     weekDay = day.getDay();
 
-    daycounter = `${day.getFullYear()}${day.getMonth()}${day.getDate()}`;
+    daycounter = `${day.getFullYear()}${
+      day.getMonth().toString().length === 2
+        ? day.getMonth()
+        : "0" + day.getMonth()
+    }${
+      day.getDate().toString().length === 2
+        ? day.getDate()
+        : "0" + day.getDate()
+    }`;
 
     sat = weekDay === 6 ? "sat" : "";
     fri = weekDay === 5 ? "fri" : "";
