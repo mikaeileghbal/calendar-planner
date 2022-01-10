@@ -247,6 +247,9 @@ div.days {
 div.days:hover {
   background-color: rgba(226, 53, 80, 0.3);
 }
+div.days.selected {
+  background-color: rgba(226, 53, 80, 0.3);
+}
 
 #calendar-today .days {
   background-color: #e23550;
@@ -502,6 +505,9 @@ input[type=text]:valid {
 }
 .side-panel__body .title-date {
   text-align: left;
+}
+.side-panel__body .title-date .side-panel_date {
+  font-size: 0.8em;
 }
 
 .todo__container {
