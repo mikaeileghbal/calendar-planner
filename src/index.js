@@ -51,6 +51,7 @@ let currentYear =
 let thisDate = new Date(currentYear);
 thisDate.setDate(new Date().getDate());
 thisDate.setMonth(new Date().getMonth());
+console.log(thisDate);
 
 // Show clock on top of page
 let clock = document.querySelector(".time");
@@ -65,7 +66,6 @@ window.addEventListener("load", () => {
   setCalendarContainer(calendarContainer);
   createYear(thisDate);
   updateHeaderTitles();
-
   const calendarDates = document.querySelectorAll(".days");
   addListenerToDays(calendarDates);
 });
