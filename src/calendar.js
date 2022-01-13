@@ -154,13 +154,13 @@ function calDays(calDate) {
       htmlCode +=
         `<td  class='calendar-dates ${sat} ${fri}' id='calendar-today'><div data-daynumber=${daycounter} class='days'>` +
         i +
-        dayEvents[i] +
+        //dayEvents[i] +
         "</div></td>";
     } else {
       htmlCode +=
         `<td  class='calendar-dates ${sat} ${fri}'><div data-daynumber=${daycounter} class='days'>` +
         i +
-        dayEvents[i] +
+        //dayEvents[i] +
         "</div></td>";
     }
     if (weekDay === 6) {
