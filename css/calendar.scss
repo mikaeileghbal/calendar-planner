@@ -380,14 +380,12 @@ td.calendar-dates.fri {
 
 .add-item__countainer {
   position: fixed;
-  left: 0%;
+  left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+
   transform: translateX(-100%);
   transition: transform 0.4s ease-out;
 }
@@ -401,35 +399,28 @@ td.calendar-dates.fri {
   border-radius: 20px;
   height: 500px;
   min-width: 400px;
-
+  max-width: 450px;
+  margin: 0 auto;
   padding: 2em;
-  text-align: center;
+
   position: relative;
 
-  h1 {
-    color: $white;
-    font-size: 1.5em;
-    font-weight: 400;
+  h2 {
+    color: black;
+    font-size: 0.8em;
+    font-weight: 600;
   }
 }
 
-.add-item__form {
-  display: flex;
-  flex-direction: column;
-}
-
 input[type="text"] {
-  display: block;
-  width: 100%;
   border: none;
   padding: 0.25em 0em;
   font-size: 0.8em;
   font-weight: 400;
   background-color: $creame;
-  border-bottom: 2px solid $white;
-  color: white;
+  border-bottom: 2px solid gray;
+  color: black;
   outline: none;
-  margin-top: 1.5em;
   transition: all 0.4s ease-out;
 
   &:focus {
@@ -439,17 +430,6 @@ input[type="text"] {
   &:valid {
     background-color: $creame;
   }
-}
-
-.add-item__wraper {
-  margin-top: 10em;
-  position: absolute;
-  width: 100%;
-  left: 0;
-  bottom: 0em;
-  padding: 2em;
-  display: flex;
-  justify-content: space-between;
 }
 
 @mixin button-circle {
