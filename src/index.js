@@ -43,6 +43,14 @@ let btnCloseSidePanel = document.querySelector("#btnCloseSidePanel");
 let sidePanel = document.querySelector(".side-panel");
 let btnOpenNotes = document.querySelector("#btnOpenNotes");
 const todoLabel = document.querySelectorAll(".todo__label");
+const btnAdd = document.querySelector("#btnAddItem");
+const btnCancel = document.querySelector("#btnCancel");
+const todoContainer = document.querySelector(".todo__container");
+
+console.log(btnAdd);
+console.log(btnCancel);
+console.log(todoContainer);
+
 console.log(todoLabel);
 
 let currentYear =
@@ -147,3 +155,40 @@ function setCurrentYear(date, year) {
 function saveYearToLOcal(year) {
   localStorage.setItem("currentYear", year);
 }
+
+btnAddItem.addEventListener("click", (e) => {
+  const input = document.querySelector("#newitem");
+  const value = input.value;
+  input.value = "";
+
+  let todoRow = document.createElement("div");
+  let label = document.createElement("label");
+  let check = document.createElement("input");
+  let text = document.createElement("text");
+  let btnDelete = document.createElement("button");
+
+  todoRow.classList.add("todo_row");
+  label.classList.add("todo__label");
+  check.type = "checkbox";
+  check.classList.add("todo__check");
+  text.innerText = value;
+  btnDelete.innerText = "Delete";
+  btnDelete.classList.add("btnDeleteItem");
+
+  label.appendChild(check);
+  label.appendChild(text);
+  todoRow.appendChild(label);
+  todoRow.appendChild(btnDelete);
+  todoContainer.appendChild(todoRow);
+
+  btnDelete.addEventListener("click", () => {
+    todoContainer.removeChild(todoRow);
+  });
+
+  input.focus();
+});
+
+btnCancel.addEventListener("click", () => {
+  const container = document.querySelector(".add-item__countainer");
+  container.classList.remove("show");
+});
