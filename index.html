@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="css/calendar.css">
 
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>Calendar-Planner</title>
 </head>
 
@@ -20,6 +22,12 @@
             <button id="btnNextYear" class="button button--circle">&#10095</button>
             <span class='current-year'></span>
             <span class='time'></span>
+            <span class="view">
+                <select name="view" id="view">
+                <option value="Month">Month</option>
+                <option value="Year" selected>Year</option>
+            </select>
+            </span>
             <span class='today'></span>
         </div>
     </header>
@@ -33,40 +41,35 @@
         </div>
         <div class="side-panel active">
             <header class="side-panel__header">
-                <h1>Notes</h1>
+                
+                <div class="title-date">
+                    <h1>Notes</h1>
+                    <h4 class="side-panel_date">29 December 2021</h4>
+                </div>
                 <button id="btnCloseSidePanel" class="button--close">&#10006</button>
             </header>
             <section class="side-panel__body">
-                <div class="title-date">
-                    <h4 class="side-panel_date">29 December 2021</h4>
-                </div>
-                <div class="todo__empty">Not implemented...</div>
+                <button class="button--add"><span class="plus">&#43</span>Add a note...</button>
+                
+                <!-- <div class="todo__empty">Not implemented...</div> -->
                 <div class="todo__container">
+                    
                     <div class="todo__row">
-                        <label class="todo__label"><input class="todo__check" type="checkbox" />Water
+                        <label class="todo__label">Water
                             the
                             plants</label>
-                    </div>
-                    <div class="todo__row">
-                        <label class="todo__label"><input class="todo__check" type="checkbox"  />Water
-                            the
-                            plants</label>
-                    </div>
-                    <div class="todo__row">
-                        <label class="todo__label"><input class="todo__check" type="checkbox"   />Water
-                            the
-                            plants</label>
+                            <button class="btnDeleteItem">
+                                <i class="fa fa-trash"></i>
+                            </button>
                     </div>
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis repudiandae quis quae optio? Excepturi
-                    est mollitia, repellendus quam voluptatum veniam quos ratione aliquid exercitationem sequi fugit,
-                    maiores necessitatibus fuga numquam?</p>
+                
             </section>
         </div>
 
     </section>
 
-    <div class="add-item__countainer show">
+    <div class="add-item__countainer">
         <div class="add-item__frame">
                <form action="">
                    <label for="newitem">Add note:</label>
