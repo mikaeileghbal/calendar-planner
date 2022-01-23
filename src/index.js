@@ -3,6 +3,7 @@ import createYear, {
   headerTitleToday,
   setCalendarContainer,
 } from "./calendar.js";
+import loadStyle, { removeStyle } from "./styler.js";
 
 let notes = [
   {
@@ -46,6 +47,11 @@ const todoLabel = document.querySelectorAll(".todo__label");
 const btnAdd = document.querySelector("#btnAddItem");
 const btnCancel = document.querySelector("#btnCancel");
 const todoContainer = document.querySelector(".todo__container");
+const viewSelect = document.querySelector("#view");
+const btnAddNote = document.querySelector(".button--add");
+const additemcountainer = document.querySelector(".add-item__countainer");
+
+let View_Mode = "Year";
 
 console.log(btnAdd);
 console.log(btnCancel);
@@ -156,26 +162,29 @@ function saveYearToLOcal(year) {
   localStorage.setItem("currentYear", year);
 }
 
-btnAddItem.addEventListener("click", (e) => {
+btnAdd.addEventListener("click", (e) => {
   const input = document.querySelector("#newitem");
   const value = input.value;
   input.value = "";
 
   let todoRow = document.createElement("div");
   let label = document.createElement("label");
-  let check = document.createElement("input");
-  let text = document.createElement("text");
+  //let check = document.createElement("input");
+  let text = document.createTextNode(value);
   let btnDelete = document.createElement("button");
+  let trash = document.createElement("i");
+  trash.classList.add("fa", "fa-trash");
 
-  todoRow.classList.add("todo_row");
+  todoRow.classList.add("todo__row");
   label.classList.add("todo__label");
-  check.type = "checkbox";
-  check.classList.add("todo__check");
-  text.innerText = value;
-  btnDelete.innerText = "Delete";
-  btnDelete.classList.add("btnDeleteItem");
+  //check.type = "checkbox";
+  //check.classList.add("todo__check");
+  //text.innerText = value;
 
-  label.appendChild(check);
+  btnDelete.classList.add("btnDeleteItem");
+  btnDelete.appendChild(trash);
+
+  //label.appendChild(check);
   label.appendChild(text);
   todoRow.appendChild(label);
   todoRow.appendChild(btnDelete);
@@ -185,10 +194,29 @@ btnAddItem.addEventListener("click", (e) => {
     todoContainer.removeChild(todoRow);
   });
 
+  label.addEventListener("click", (e) => {
+    e.target.classList.toggle("checked");
+  });
+
   input.focus();
 });
 
 btnCancel.addEventListener("click", () => {
   const container = document.querySelector(".add-item__countainer");
   container.classList.remove("show");
+});
+
+viewSelect.addEventListener("change", (e) => {
+  const selected = e.target.value;
+  if (selected === "Month") {
+    loadStyle("css/monthview.css");
+    View_Mode = "Month";
+  } else if (selected === "Year") {
+    removeStyle("css/monthview.css");
+    View_Mode = "Year";
+  }
+});
+
+btnAddNote.addEventListener("click", (e) => {
+  additemcountainer.classList.toggle("show");
 });
