@@ -30,6 +30,9 @@ export default function createYear(thisDate) {
 
 /* Function to generate calendar Table */
 function createCalendar(calDate) {
+  headerTitleYear = calDate.getFullYear();
+  headerTitleToday = calDate.getDate();
+
   let calendareHtml = "<div class='month-container'>";
   calendareHtml += "<table id='calendar_table' class='calendar_table'>";
   calendareHtml += calCaption(calDate);
@@ -41,8 +44,7 @@ function createCalendar(calDate) {
   return calendareHtml;
 }
 
-/* function to write the calendar caption */
-function calCaption(calDate) {
+function getMonthName(index) {
   let monthName = [
     "January",
     "February",
@@ -57,7 +59,10 @@ function calCaption(calDate) {
     "November",
     "December",
   ];
-
+  return monthName[index];
+}
+/* function to write the calendar caption */
+function calCaption(calDate) {
   // determine the current month
   let thisMonth = calDate.getMonth();
 
@@ -65,8 +70,8 @@ function calCaption(calDate) {
   let thisYear = calDate.getFullYear();
 
   return (
-    `<caption id="${monthName[thisMonth]}">` +
-    monthName[thisMonth] +
+    `<caption id="${getMonthName(thisMonth)}">` +
+    getMonthName(thisMonth) +
     " " +
     "<span class='year' id='year'>" +
     thisYear +
@@ -182,4 +187,4 @@ function calDays(calDate) {
   return htmlCode;
 }
 
-export { headerTitleYear, headerTitleToday };
+export { headerTitleYear, headerTitleToday, createCalendar, getMonthName };

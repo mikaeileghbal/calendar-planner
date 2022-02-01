@@ -2,6 +2,8 @@ import createYear, {
   headerTitleYear,
   headerTitleToday,
   setCalendarContainer,
+  createCalendar,
+  getMonthName,
 } from "./calendar.js";
 import loadStyle, { removeStyle } from "./styler.js";
 
@@ -52,6 +54,7 @@ const btnAddNote = document.querySelector(".button--add");
 const additemcountainer = document.querySelector(".add-item__countainer");
 
 let View_Mode = "Year";
+let currentMonth = 0;
 
 console.log(btnAdd);
 console.log(btnCancel);
@@ -77,12 +80,37 @@ function setTime() {
 }
 
 window.addEventListener("load", () => {
+  setViewYear();
+});
+
+viewSelect.addEventListener("change", (e) => {
+  const selected = e.target.value;
+  if (selected === "Month") {
+    loadStyle("css/monthview.css");
+    View_Mode = "Month";
+    setViewMonth();
+    updateHeaderTitles();
+  } else if (selected === "Year") {
+    removeStyle("css/monthview.css");
+    View_Mode = "Year";
+    updateCalendar();
+  }
+});
+
+function setViewYear() {
   setCalendarContainer(calendarContainer);
   createYear(thisDate);
   updateHeaderTitles();
   const calendarDates = document.querySelectorAll(".days");
   addListenerToDays(calendarDates);
-});
+}
+
+function setViewMonth() {
+  calendarContainer.innerHTML = createCalendar(
+    new Date(currentYear, currentMonth, 1)
+  );
+  updateHeaderTitles();
+}
 
 function addListenerToDays(days) {
   days.forEach((day) => {
@@ -99,6 +127,8 @@ function addListenerToDays(days) {
         dayNumber.slice(4, 6),
         dayNumber.slice(6, 8)
       );
+      currentMonth = dayNumber.slice(4, 6);
+      console.log(currentMonth);
       console.log(selectedDate);
       document.querySelector(".side-panel_date").innerText =
         selectedDate.toDateString();
@@ -108,17 +138,36 @@ function addListenerToDays(days) {
 
 btnToday.addEventListener("click", (e) => {
   e.preventDefault();
+
   currentYear = new Date().getFullYear();
+  currentMonth = new Date().getMonth();
+
   updateCalendar();
 });
 
 btnPreviousYear.addEventListener("click", (e) => {
-  currentYear--;
+  if (View_Mode === "Year") {
+    currentYear--;
+  } else if (View_Mode === "Month") {
+    currentMonth--;
+    if (currentMonth < 0) {
+      currentMonth = 11;
+      currentYear--;
+    }
+  }
   updateCalendar();
 });
 
 btnNextYear.addEventListener("click", (e) => {
-  currentYear++;
+  if (View_Mode === "Year") {
+    currentYear++;
+  } else if (View_Mode === "Month") {
+    currentMonth++;
+    if (currentMonth > 11) {
+      currentMonth = 0;
+      currentYear++;
+    }
+  }
   updateCalendar();
 });
 
@@ -137,10 +186,14 @@ todoLabel.forEach((label) => {
 });
 
 function updateCalendar() {
-  setCurrentYear(thisDate, currentYear);
-  saveYearToLOcal(currentYear);
-  createYear(thisDate);
-  updateHeaderTitles();
+  if (View_Mode === "Year") {
+    setCurrentYear(thisDate, currentYear);
+    saveYearToLocal(currentYear);
+    setViewYear(thisDate);
+  } else if (View_Mode === "Month") {
+    console.log(currentMonth);
+    setViewMonth(currentMonth);
+  }
 
   const calendarDates = document.querySelectorAll(".days");
   addListenerToDays(calendarDates);
@@ -149,7 +202,14 @@ function updateCalendar() {
 function updateHeaderTitles() {
   const headerYear = document.querySelector(".current-year");
   const headerToday = document.querySelector(".today");
-  headerYear.innerText = headerTitleYear;
+  if (View_Mode === "Year") {
+    headerYear.innerText = headerTitleYear;
+  } else if (View_Mode === "Month") {
+    console.log(Number(currentMonth));
+    headerYear.innerText = `${getMonthName(
+      Number(currentMonth)
+    )} ${headerTitleYear}`;
+  }
   headerToday.innerText = headerTitleToday;
 }
 
@@ -158,7 +218,7 @@ function setCurrentYear(date, year) {
   return date;
 }
 
-function saveYearToLOcal(year) {
+function saveYearToLocal(year) {
   localStorage.setItem("currentYear", year);
 }
 
@@ -204,17 +264,6 @@ btnAdd.addEventListener("click", (e) => {
 btnCancel.addEventListener("click", () => {
   const container = document.querySelector(".add-item__countainer");
   container.classList.remove("show");
-});
-
-viewSelect.addEventListener("change", (e) => {
-  const selected = e.target.value;
-  if (selected === "Month") {
-    loadStyle("css/monthview.css");
-    View_Mode = "Month";
-  } else if (selected === "Year") {
-    removeStyle("css/monthview.css");
-    View_Mode = "Year";
-  }
 });
 
 btnAddNote.addEventListener("click", (e) => {
