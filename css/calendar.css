@@ -480,6 +480,7 @@ input[type=text]:valid {
 .side-panel__header h1 {
   font-size: 0.7em;
   font-weight: 600;
+  line-height: 1.6;
   color: #4e4c4c;
 }
 .side-panel__header .side-panel_date {
