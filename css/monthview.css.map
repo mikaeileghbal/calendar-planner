@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,CAAC,CAAC;EACA,UAAU,EAAE,UAAU;CACvB;;AAED,AAAA,IAAI,CAAC;EACH,gBAAgB,EAAE,SAAS;CAC5B;;AAED,AAAA,YAAY,CAAC;EACX,gBAAgB,EAAE,SAAS;CAC5B",
-    "sources": [
-        "monthview.scss"
-    ],
-    "names": [],
-    "file": "monthview.css"
-}
+{"version":3,"sources":["monthview.scss"],"names":[],"mappings":"AAAA;EACE,sBAAA;AACF;;AAEA;EACE,2BAAA;AACF;;AAEA;EACE,2BAAA;AACF","file":"monthview.css"}
