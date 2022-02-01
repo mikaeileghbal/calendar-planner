@@ -1,6 +1,5 @@
 * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -9,5 +8,4 @@ body {
 
 .year-header {
   background-color: lightblue;
-}
-/*# sourceMappingURL=monthview.css.map */
+}/*# sourceMappingURL=monthview.css.map */
