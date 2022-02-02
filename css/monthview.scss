@@ -3,9 +3,41 @@
 }
 
 body {
-  background-color: lawngreen;
+  //background-color: lawngreen;
 }
 
 .year-header {
   background-color: lightblue;
+}
+
+.calendar {
+  padding: 0;
+  margin: 0;
+}
+
+caption {
+  display: none;
+}
+
+.month-container {
+  flex-basis: 100%;
+  height: 100%;
+
+  margin: 0 auto;
+
+  .calendar_table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+th,
+td {
+  border: 1px solid #ddd !important;
+  font-size: 0.6em;
+  width: 50px;
+  text-align: center;
 }
