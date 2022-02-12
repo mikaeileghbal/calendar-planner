@@ -534,6 +534,15 @@ input[type=text]:valid {
 .todo__row:hover {
   box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.3);
 }
+.todo__row input {
+  border: none;
+  background-color: transparent;
+  padding: 5px 0px;
+  outline: none;
+}
+.todo__row button {
+  margin: 0;
+}
 
 .todo__label {
   font-size: 0.6em;
