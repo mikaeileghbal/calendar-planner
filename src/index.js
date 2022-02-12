@@ -6,6 +6,7 @@ import createYear, {
   getMonthName,
 } from "./calendar.js";
 import loadStyle, { removeStyle } from "./styler.js";
+import Note from "./Note.js";
 
 let notes = [
   {
@@ -267,5 +268,9 @@ btnCancel.addEventListener("click", () => {
 });
 
 btnAddNote.addEventListener("click", (e) => {
-  additemcountainer.classList.toggle("show");
+  //additemcountainer.classList.toggle("show");
+  const newNote = new Note();
+  const notesContainer = document.querySelector(".todo__container");
+  notesContainer.appendChild(newNote.createNote());
+  notesContainer.lastChild.firstChild.focus();
 });

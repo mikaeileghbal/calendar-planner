@@ -601,6 +601,17 @@ input[type="text"] {
   &:hover {
     box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.3);
   }
+
+  input {
+    border: none;
+    background-color: transparent;
+    padding: 5px 0px;
+    outline: none;
+  }
+
+  button {
+    margin: 0;
+  }
 }
 
 .todo__label {
@@ -616,6 +627,7 @@ input[type="text"] {
   color: gray;
   text-decoration: line-through;
 }
+
 .todo__check {
   margin-right: 0.5em;
 }
@@ -697,4 +709,8 @@ select {
 @media screen and (max-width: 769px) {
   section {
   }
+}
+
+:focus {
+  ///border: 2px solid red;
 }
