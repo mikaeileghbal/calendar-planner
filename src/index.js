@@ -82,6 +82,7 @@ function setTime() {
 
 window.addEventListener("load", () => {
   setViewYear();
+  console.log("today", headerTitleToday);
 });
 
 viewSelect.addEventListener("change", (e) => {

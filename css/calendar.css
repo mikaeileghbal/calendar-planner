@@ -99,6 +99,7 @@ section {
   position: relative;
   text-align: center;
   margin-left: 5em;
+  width: 50px;
   color: #e23550;
 }
 .year-header .time {

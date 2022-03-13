@@ -15,7 +15,7 @@ export function setCalendarContainer(container) {
 
 export default function createYear(thisDate) {
   headerTitleYear = thisDate.getFullYear();
-  headerTitleToday = thisDate.getDate();
+  headerTitleToday = thisDate.0();
 
   let output = "<div class='year-container'>";
 
