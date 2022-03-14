@@ -82,6 +82,11 @@ function setTime() {
 
 window.addEventListener("load", () => {
   setViewYear();
+
+  const calendarDates = document.querySelectorAll(".days");
+  console.log("dates:", calendarDates);
+  addListenerToDays(calendarDates);
+
   console.log("today", headerTitleToday);
 });
 
@@ -198,6 +203,7 @@ function updateCalendar() {
   }
 
   const calendarDates = document.querySelectorAll(".days");
+  console.log("dates:", calendarDates);
   addListenerToDays(calendarDates);
 }
 
