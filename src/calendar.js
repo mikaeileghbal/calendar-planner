@@ -15,7 +15,7 @@ export function setCalendarContainer(container) {
 
 export default function createYear(thisDate) {
   headerTitleYear = thisDate.getFullYear();
-  headerTitleToday = thisDate.0();
+  headerTitleToday = new Date().getDate();
 
   let output = "<div class='year-container'>";
 
@@ -31,7 +31,7 @@ export default function createYear(thisDate) {
 /* Function to generate calendar Table */
 function createCalendar(calDate) {
   headerTitleYear = calDate.getFullYear();
-  headerTitleToday = calDate.getDate();
+  headerTitleToday = new Date().getDate();
 
   let calendareHtml = "<div class='month-container'>";
   calendareHtml += "<table id='calendar_table' class='calendar_table'>";
