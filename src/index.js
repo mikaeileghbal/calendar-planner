@@ -80,14 +80,14 @@ function setTime() {
   clock.innerText = new Date().toLocaleTimeString();
 }
 
+function setCalendarDaysClick() {
+  const calendarDates = document.querySelectorAll(".days");
+  addListenerToDays(calendarDates);
+}
+
 window.addEventListener("load", () => {
   setViewYear();
-
-  const calendarDates = document.querySelectorAll(".days");
-  console.log("dates:", calendarDates);
-  addListenerToDays(calendarDates);
-
-  console.log("today", headerTitleToday);
+  setCalendarDaysClick();
 });
 
 viewSelect.addEventListener("change", (e) => {
@@ -100,8 +100,10 @@ viewSelect.addEventListener("change", (e) => {
   } else if (selected === "Year") {
     removeStyle("css/monthview.css");
     View_Mode = "Year";
-    updateCalendar();
   }
+  updateCalendar();
+
+  setCalendarDaysClick();
 });
 
 function setViewYear() {
@@ -179,10 +181,12 @@ btnNextYear.addEventListener("click", (e) => {
 });
 
 btnCloseSidePanel.addEventListener("click", (e) => {
+  console.log("clicked");
   sidePanel.classList.remove("active");
 });
 
 btnOpenNotes.addEventListener("click", (e) => {
+  console.log("clicked");
   sidePanel.classList.toggle("active");
 });
 

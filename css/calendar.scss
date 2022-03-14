@@ -28,25 +28,22 @@ body {
   line-height: 1.2;
   font-family: sans-serif;
   background-color: $creame;
+  height: 100vh;
 }
 
 section {
   width: 100%;
+  height: 100%;
   margin: 0;
-  //background-color: aqua;
-  padding: 0em;
+  padding: 0;
+  padding-top: 0em;
   display: flex;
 }
 .calendar {
   width: 100%;
   background: $creame;
-  margin: 0;
-  //box-shadow: rgb(160,160,160) 1px 1px 15px;
+  margin-top: 65px;
   text-align: center;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
 
   &:hover ::-webkit-scrollbar-thumb {
     background-color: darken($color: silver, $amount: 10);
@@ -58,7 +55,6 @@ section {
   border-bottom: 1px solid silver;
   font-weight: 200;
   font-size: 1em;
-  position: relative;
   background-color: $creame;
   color: black;
   padding: 0.7em 2em;
@@ -67,6 +63,7 @@ section {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
 
   .app-title {
     font-size: 1em;
@@ -122,18 +119,15 @@ section {
 
 .year-container {
   width: 100%;
-  height: 89vh;
+  height: 100%;
   overflow: auto;
-
   // display: grid;
   // grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   // gap: 1em;
   display: flex;
   flex-wrap: wrap;
-
-  margin: 0em 0em 0em;
   background-color: $creame;
-  border-radius: 50px;
+
   padding: 0em 3em 1em;
 }
 
@@ -507,22 +501,19 @@ input[type="text"] {
 /* Side Menu Styles */
 //===================
 .side-menu {
-  //display: none;
-  height: 89vh;
-
   padding: 0.5em 0.3em;
   background-color: $creame;
   border-left: 1px solid silver;
   margin-left: 0.2em;
+  margin-top: 65px;
 }
 
 /* Side panel styles */
 //=====================
 .side-panel {
-  //position: absolute;
-  height: 89vh;
   display: none;
   width: 360px;
+  margin-top: 65px;
   flex-basis: 300px;
   flex-shrink: 0;
   background-color: $creame;
