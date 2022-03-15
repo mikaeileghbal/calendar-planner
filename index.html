@@ -1,98 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/calendar.css" />
 
-    <link rel="stylesheet" href="css/calendar.css">
-
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
     <title>Calendar-Planner</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>
-        <div class='year-header'>
-            <span class='app-title'>Calendar</span>
-            <button id="btnToday" class="button button--today">today</button>
-            <button id="btnPreviousYear" class="button button--circle">&#10094</button>
-            <button id="btnNextYear" class="button button--circle">&#10095</button>
-            <span class='current-year'></span>
-            <span class='time'></span>
-            <span class="view">
-                <select name="view" id="view" >
-                <option value="Month">Month</option>
-                <option value="Year" selected>Year</option>
-            </select>
-            </span>
-            <span class='today'></span>
-        </div>
+      <div class="year-header">
+        <span class="app-title">Calendar</span>
+        <button id="btnToday" class="button button--today">today</button>
+        <button id="btnPreviousYear" class="button button--circle">
+          <i class="fa fa-arrow-left"></i>
+        </button>
+        <button id="btnNextYear" class="button button--circle">
+          <i class="fa fa-arrow-right"></i>
+        </button>
+        <span class="current-year"></span>
+        <span class="time"></span>
+        <span class="view">
+          <select name="view" id="view">
+            <option value="Month">Month</option>
+            <option value="Year" selected>Year</option>
+          </select>
+        </span>
+        <span class="today"></span>
+      </div>
     </header>
 
     <section class="section-main">
-        <div id="calendar" class="calendar">
-        </div>
+      <div id="calendar" class="calendar"></div>
 
-        <div class="side-menu">
-            <button id=btnOpenNotes class="button--close">&#128221</button>
-        </div>
-        <div class="side-panel active">
-            <header class="side-panel__header">
-                                <div class="title-date">
-                    <h1>Notes</h1>
-                    <h4 class="side-panel_date">SAT JAN 01 2022</h4>
-                </div>
-                <button id="btnCloseSidePanel" class="button--close">&#10006</button>
-            </header>
-            <section class="side-panel__body">
-                <button class="button--add"><span class="plus">&#43</span>Add a note...</button>
-                
-                <!-- <div class="todo__empty">Not implemented...</div> -->
-                <div class="todo__container">
-                    
-                    <div class="todo__row">
-                        <label class="todo__label">Water
-                            the
-                            plants</label>
-                            <button class="button btnDeleteItem">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                    </div>
-                    <div class="todo__row">
-                        <label class="todo__label">Water
-                            the
-                            plants</label>
-                            <button class="button btnDeleteItem">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                    </div>
-                </div>
-                
-            </section>
-        </div>
+      <div class="side-menu">
+        <button id="btnOpenNotes" class="button--close">
+          <i class="fa fa-book"></i>
+        </button>
+      </div>
+      <div class="side-panel active">
+        <header class="side-panel__header">
+          <div class="title-date">
+            <h1>Notes</h1>
+            <h4 class="side-panel_date">SAT JAN 01 2022</h4>
+          </div>
+          <button id="btnCloseSidePanel" class="button--close">
+            <i class="fa fa-times"></i>
+          </button>
+        </header>
+        <section class="side-panel__body">
+          <button class="button--add">
+            <span class="plus"
+              ><i class="fa fa-plus" style="font-size: 0.8em"></i></span
+            >Add a note...
+          </button>
 
+          <div class="todo__container"></div>
+        </section>
+      </div>
     </section>
 
     <div class="add-item__countainer">
-        <div class="add-item__frame">
-               <form action="">
-                   <label for="newitem">Add note:</label>
-                   <input type="text" id="newitem" name="newitem">
-                   <input type="button" value="Add" id="btnAddItem">
-                   <input type="reset" value="Cancel" id="btnCancel">
-               </form>
-        </div>
+      <div class="add-item__frame">
+        <form action="">
+          <label for="newitem">Add note:</label>
+          <input type="text" id="newitem" name="newitem" />
+          <input type="button" value="Add" id="btnAddItem" />
+          <input type="reset" value="Cancel" id="btnCancel" />
+        </form>
+      </div>
     </div>
 
-
-    
-    <!-- <script src="_code/calendar.js" ></script> -->
-
     <script src="code/application.js"></script>
-
-</body>
-
+  </body>
 </html>
