@@ -4,39 +4,10 @@ import createYear, {
   setCalendarContainer,
   createCalendar,
   getMonthName,
-} from "./calendar.js";
-import loadStyle, { removeStyle } from "./styler.js";
-import Note from "./Note.js";
+} from "./js/calendar.js";
 
-let notes = [
-  {
-    date: "202112/20",
-    description: "Today I am going to meet my friend.",
-    todo: ["Meeting", "Reading", "Working"],
-  },
-  {
-    date: "202112/20",
-    description: "Today I am going to meet my friend.",
-    todo: ["Meeting", "Reading", "Working"],
-  },
-  {
-    date: "202112/20",
-    description: "Today I am going to meet my friend.",
-    todo: ["Meeting", "Reading", "Working"],
-  },
-  {
-    date: "202112/20",
-    description: "Today I am going to meet my friend.",
-    todo: ["Meeting", "Reading", "Working"],
-  },
-  {
-    date: "202112/20",
-    description: "Today I am going to meet my friend.",
-    todo: ["Meeting", "Reading", "Working"],
-  },
-];
-
-console.log(notes);
+import loadStyle, { removeStyle } from "./js/styler.js";
+import Note from "./js/Note.js";
 
 let calendarContainer = document.getElementById("calendar");
 
