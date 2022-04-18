@@ -9,6 +9,16 @@ import createYear, {
 import loadStyle, { removeStyle } from "./js/styler.js";
 import Note from "./js/Note.js";
 
+// testing view ----------
+import CalendarView from "./js/calendarView.js";
+import CalendarController from "./js/calendarController.js";
+
+//const calendarView = new CalendarView(document, null, null);
+const calendarController = new CalendarController(document);
+calendarController.createCalendar("2020");
+calendarController.setViewMonth();
+//-------------------------
+
 let calendarContainer = document.getElementById("calendar");
 
 let btnToday = document.querySelector("#btnToday");
@@ -186,12 +196,12 @@ function updateHeaderTitles() {
   const headerYear = document.querySelector(".current-year");
   const headerToday = document.querySelector(".today");
   if (View_Mode === "Year") {
-    headerYear.innerText = headerTitleYear;
+    //headerYear.innerText = headerTitleYear;
   } else if (View_Mode === "Month") {
     console.log(Number(currentMonth));
-    headerYear.innerText = `${getMonthName(
-      Number(currentMonth)
-    )} ${headerTitleYear}`;
+    //headerYear.innerText = `${getMonthName(
+    // Number(currentMonth)
+    //)} ${headerTitleYear}`;
   }
   headerToday.innerText = headerTitleToday;
 }
