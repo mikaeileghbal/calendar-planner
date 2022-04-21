@@ -14,10 +14,40 @@ import Note from "./js/Note.js";
 import CalendarPlanner from "./js/CalendarPlanner.js";
 
 //const calendarView = new CalendarView(document, null, null);
-const calendar = new CalendarPlanner(new Date());
-const section = document.querySelector(".section-main");
-section.prepend(calendar.getYearCalendar());
-console.log(calendar.getMonthOfYear());
+
+const APP = (function () {
+  const calendar = new CalendarPlanner(new Date());
+
+  function init() {
+    const section = document.querySelector(".section-main");
+    let btnNextYear = document.querySelector("#btnNextYear");
+
+    section.replaceChild(
+      calendar.getYearCalendar(),
+      document.querySelector(".calendar")
+    );
+    document.querySelector(".current-year").textContent = calendar.getYear();
+  }
+
+  btnNextYear.addEventListener("click", nextYear);
+
+  function nextYear() {
+    if (View_Mode === "Year") {
+      currentYear++;
+    } else if (View_Mode === "Month") {
+      currentMonth++;
+      if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+      }
+    }
+    calendar.nextYear();
+    init();
+    //updateCalendar();
+  }
+
+  init();
+})();
 
 //-------------------------
 
@@ -25,7 +55,7 @@ let calendarContainer = document.getElementById("calendar");
 
 let btnToday = document.querySelector("#btnToday");
 let btnPreviousYear = document.querySelector("#btnPreviousYear");
-let btnNextYear = document.querySelector("#btnNextYear");
+
 let btnCloseSidePanel = document.querySelector("#btnCloseSidePanel");
 let sidePanel = document.querySelector(".side-panel");
 let btnOpenNotes = document.querySelector("#btnOpenNotes");
@@ -145,19 +175,6 @@ btnPreviousYear.addEventListener("click", (e) => {
     if (currentMonth < 0) {
       currentMonth = 11;
       currentYear--;
-    }
-  }
-  updateCalendar();
-});
-
-btnNextYear.addEventListener("click", (e) => {
-  if (View_Mode === "Year") {
-    currentYear++;
-  } else if (View_Mode === "Month") {
-    currentMonth++;
-    if (currentMonth > 11) {
-      currentMonth = 0;
-      currentYear++;
     }
   }
   updateCalendar();
