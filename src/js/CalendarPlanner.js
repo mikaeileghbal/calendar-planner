@@ -5,7 +5,6 @@ function CalendarPlanner(date) {
 }
 
 CalendarPlanner.prototype._getMonthName = function (index) {
-  console.log("this month" + index);
   let monthName = [
     "January",
     "February",
@@ -39,7 +38,6 @@ CalendarPlanner.prototype.getDayOfMonth = function () {
 };
 
 CalendarPlanner.prototype.getMonthOfYear = function () {
-  console.log("in month");
   return this._getMonthName(this.date.getMonth());
 };
 
@@ -56,7 +54,6 @@ CalendarPlanner.prototype.getWeekCalendar = function () {
 };
 
 CalendarPlanner.prototype.getYearCalendar = function () {
-  console.log("in year");
   let container = document.createElement("div");
   container.className = "calendar";
   container.id = "calendar";
@@ -75,11 +72,9 @@ CalendarPlanner.prototype.getYearCalendar = function () {
 };
 
 CalendarPlanner.prototype.getMonthCalenar = function (monthDate) {
-  console.log("in month");
   let calendareHtml = "<div class='month-container'>";
   calendareHtml += "<table id='calendar_table' class='calendar_table'>";
   calendareHtml += this.calCaption(monthDate);
-  console.log("after captin");
   calendareHtml += this.calWeakdayRow();
   calendareHtml += this.calDays(monthDate);
   calendareHtml += "</table>";
@@ -90,10 +85,7 @@ CalendarPlanner.prototype.getMonthCalenar = function (monthDate) {
 
 /* function to write the calendar caption */
 CalendarPlanner.prototype.calCaption = function (monthDate) {
-  // determine the current month
   let thisMonth = monthDate.getMonth();
-  console.log("inside calcCaption", thisMonth);
-  //determine the current year
 
   return (
     `<caption id="${this._getMonthName(thisMonth)}">` +
@@ -121,7 +113,6 @@ CalendarPlanner.prototype.calWeakdayRow = function () {
 //function to calculate the numbers of days in the month
 CalendarPlanner.prototype.daysInMonth = function (calDate) {
   let dayCount = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
   let thisYear = calDate.getFullYear();
   let thisMonth = calDate.getMonth();
 
@@ -137,7 +128,6 @@ CalendarPlanner.prototype.daysInMonth = function (calDate) {
 
 //Fnction to write table rows for each day of the month
 CalendarPlanner.prototype.calDays = function (calDate) {
-  //Determine the startin day of the month
   let daycounter = 0;
   let day = new Date(calDate.getFullYear(), calDate.getMonth(), 1);
   let weekDay = day.getDay();
@@ -150,13 +140,11 @@ CalendarPlanner.prototype.calDays = function (calDate) {
 
   //Write cells for each day of the month
   let totalDays = this.daysInMonth(calDate);
-
   let highlightDay = new Date().getDate();
   let highlightMonth = new Date().getMonth();
   let sat = "";
   let fri = "";
 
-  //console.log(highlightDay, highlightMonth);
   for (let i = 1; i <= totalDays; i++) {
     day.setDate(i);
     weekDay = day.getDay();
