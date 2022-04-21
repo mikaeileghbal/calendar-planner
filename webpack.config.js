@@ -5,8 +5,8 @@ module.exports = {
   watch: true,
   entry: "./src/index.js",
   output: {
-    filename: "application.js",
-    path: path.resolve(__dirname, "code"),
+    filename: "calendarPlanner.js",
+    path: path.resolve(__dirname, "dist/code"),
   },
   module: {
     rules: [
