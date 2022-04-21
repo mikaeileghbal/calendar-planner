@@ -4,39 +4,22 @@ import createYear, {
   setCalendarContainer,
   createCalendar,
   getMonthName,
-} from "./calendar.js";
-import loadStyle, { removeStyle } from "./styler.js";
-import Note from "./Note.js";
+} from "./js/calendar.js";
 
-let notes = [
-  {
-    date: "202112/20",
-    description: "Today I am going to meet my friend.",
-    todo: ["Meeting", "Reading", "Working"],
-  },
-  {
-    date: "202112/20",
-    description: "Today I am going to meet my friend.",
-    todo: ["Meeting", "Reading", "Working"],
-  },
-  {
-    date: "202112/20",
-    description: "Today I am going to meet my friend.",
-    todo: ["Meeting", "Reading", "Working"],
-  },
-  {
-    date: "202112/20",
-    description: "Today I am going to meet my friend.",
-    todo: ["Meeting", "Reading", "Working"],
-  },
-  {
-    date: "202112/20",
-    description: "Today I am going to meet my friend.",
-    todo: ["Meeting", "Reading", "Working"],
-  },
-];
+import loadStyle, { removeStyle } from "./js/styler.js";
+import Note from "./js/Note.js";
 
-console.log(notes);
+// testing view ----------
+
+import CalendarPlanner from "./js/CalendarPlanner.js";
+
+//const calendarView = new CalendarView(document, null, null);
+const calendar = new CalendarPlanner(new Date());
+const section = document.querySelector(".section-main");
+section.prepend(calendar.getYearCalendar());
+console.log(calendar.getMonthOfYear());
+
+//-------------------------
 
 let calendarContainer = document.getElementById("calendar");
 
@@ -86,8 +69,8 @@ function setCalendarDaysClick() {
 }
 
 window.addEventListener("load", () => {
-  setViewYear();
-  setCalendarDaysClick();
+  //setViewYear();
+  //setCalendarDaysClick();
 });
 
 viewSelect.addEventListener("change", (e) => {
@@ -215,12 +198,12 @@ function updateHeaderTitles() {
   const headerYear = document.querySelector(".current-year");
   const headerToday = document.querySelector(".today");
   if (View_Mode === "Year") {
-    headerYear.innerText = headerTitleYear;
+    //headerYear.innerText = headerTitleYear;
   } else if (View_Mode === "Month") {
     console.log(Number(currentMonth));
-    headerYear.innerText = `${getMonthName(
-      Number(currentMonth)
-    )} ${headerTitleYear}`;
+    //headerYear.innerText = `${getMonthName(
+    // Number(currentMonth)
+    //)} ${headerTitleYear}`;
   }
   headerToday.innerText = headerTitleToday;
 }
