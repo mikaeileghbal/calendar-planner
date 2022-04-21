@@ -10,13 +10,15 @@ import loadStyle, { removeStyle } from "./js/styler.js";
 import Note from "./js/Note.js";
 
 // testing view ----------
-import CalendarView from "./js/calendarView.js";
-import CalendarController from "./js/calendarController.js";
+
+import CalendarPlanner from "./js/CalendarPlanner.js";
 
 //const calendarView = new CalendarView(document, null, null);
-const calendarController = new CalendarController(document);
-calendarController.createCalendar("2020");
-calendarController.setViewMonth();
+const calendar = new CalendarPlanner(new Date());
+const section = document.querySelector(".section-main");
+section.prepend(calendar.getYearCalendar());
+console.log(calendar.getMonthOfYear());
+
 //-------------------------
 
 let calendarContainer = document.getElementById("calendar");
@@ -67,8 +69,8 @@ function setCalendarDaysClick() {
 }
 
 window.addEventListener("load", () => {
-  setViewYear();
-  setCalendarDaysClick();
+  //setViewYear();
+  //setCalendarDaysClick();
 });
 
 viewSelect.addEventListener("change", (e) => {
