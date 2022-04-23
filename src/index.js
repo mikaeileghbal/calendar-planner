@@ -17,10 +17,7 @@ const APP = (function () {
   function init() {
     const section = document.querySelector(".section-main");
 
-    section.replaceChild(
-      calendar.getYearCalendar(),
-      document.querySelector(".calendar")
-    );
+    document.querySelector(".calendar").innerHTML = calendar.getYearCalendar();
 
     document.querySelector(".current-year").textContent = calendar.getYear();
     document.querySelector(".today").textContent = calendar.getToday();
@@ -71,12 +68,6 @@ const viewSelect = document.querySelector("#view");
 const btnAddNote = document.querySelector(".button--add");
 const additemcountainer = document.querySelector(".add-item__countainer");
 
-console.log(btnAdd);
-console.log(btnCancel);
-console.log(todoContainer);
-
-console.log(todoLabel);
-
 let currentYear =
   localStorage.getItem("currentYear") || new Date().getFullYear();
 
@@ -99,21 +90,16 @@ function setCalendarDaysClick() {
   addListenerToDays(calendarDates);
 }
 
-window.addEventListener("load", () => {
-  //setViewYear();
-  //setCalendarDaysClick();
-});
-
 viewSelect.addEventListener("change", (e) => {
   const selected = e.target.value;
   if (selected === "Month") {
     loadStyle("css/monthview.css");
-    View_Mode = "Month";
+    View_Mode = viewModes.MONTH_VIEW;
     setViewMonth();
     updateHeaderTitles();
   } else if (selected === "Year") {
     removeStyle("css/monthview.css");
-    View_Mode = "Year";
+    View_Mode = viewModes.YEAR_VIEW;
   }
   updateCalendar();
 

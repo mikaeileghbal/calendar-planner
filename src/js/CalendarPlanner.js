@@ -1,6 +1,7 @@
 const CalendarPlanner = (function () {
   function CalendarPlanner(date) {
     this.date = date;
+    this.currentMonth = this.date.getMonth();
   }
 
   CalendarPlanner.prototype.setYear = function (year) {
@@ -15,9 +16,15 @@ const CalendarPlanner = (function () {
     this.date.setFullYear(this.date.getFullYear() - 1);
   };
 
-  CalendarPlanner.prototype.nextMonth = function () {};
+  CalendarPlanner.prototype.nextMonth = function () {
+    this.date.setMonth(this.date.getMonth() + 1);
+    console.log(this.date);
+  };
 
-  CalendarPlanner.prototype.previousMonth = function () {};
+  CalendarPlanner.prototype.previousMonth = function () {
+    this.date.setMonth(this.date.getMonth() - 1);
+    console.log(this.date);
+  };
 
   CalendarPlanner.prototype.getDayOfMonth = function () {
     return this.date.getDate();
@@ -40,10 +47,6 @@ const CalendarPlanner = (function () {
   };
 
   CalendarPlanner.prototype.getYearCalendar = function () {
-    let container = document.createElement("div");
-    container.className = "calendar";
-    container.id = "calendar";
-
     let output = "<div class='year-container'>";
     for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
       let monthDate = new Date(this.getYear(), monthIndex, 1);
@@ -52,9 +55,7 @@ const CalendarPlanner = (function () {
       output += this.getMonthCalenar(monthDate);
     }
 
-    output += "</div>";
-    container.innerHTML = output;
-    return container;
+    return output;
   };
 
   CalendarPlanner.prototype.getMonthCalenar = function (monthDate) {
