@@ -13,11 +13,19 @@ const APP = (function () {
   const btnNextYear = document.querySelector("#btnNextYear");
   const btnPreviousYear = document.querySelector("#btnPreviousYear");
   const btnToday = document.querySelector("#btnToday");
+  const viewSelect = document.querySelector("#view");
 
   function init() {
     const section = document.querySelector(".section-main");
 
-    document.querySelector(".calendar").innerHTML = calendar.getYearCalendar();
+    if (View_Mode === viewModes.YEAR_VIEW) {
+      document.querySelector(".calendar").innerHTML =
+        calendar.getYearCalendar();
+    } else {
+      document.querySelector(".calendar").innerHTML = calendar.getMonthCalenar(
+        calendar.date
+      );
+    }
 
     document.querySelector(".current-year").textContent = calendar.getYear();
     document.querySelector(".today").textContent = calendar.getToday();
@@ -50,6 +58,23 @@ const APP = (function () {
     init();
   }
 
+  viewSelect.addEventListener("change", (e) => {
+    const selected = e.target.value;
+    if (selected === "Month") {
+      loadStyle("css/monthview.css");
+      View_Mode = viewModes.MONTH_VIEW;
+      //setViewMonth();
+      //updateHeaderTitles();
+    } else if (selected === "Year") {
+      removeStyle("css/monthview.css");
+      View_Mode = viewModes.YEAR_VIEW;
+    }
+    init();
+    //updateCalendar();
+
+    //setCalendarDaysClick();
+  });
+
   init();
 })();
 
@@ -64,7 +89,7 @@ const todoLabel = document.querySelectorAll(".todo__label");
 const btnAdd = document.querySelector("#btnAddItem");
 const btnCancel = document.querySelector("#btnCancel");
 const todoContainer = document.querySelector(".todo__container");
-const viewSelect = document.querySelector("#view");
+
 const btnAddNote = document.querySelector(".button--add");
 const additemcountainer = document.querySelector(".add-item__countainer");
 
@@ -89,22 +114,6 @@ function setCalendarDaysClick() {
   const calendarDates = document.querySelectorAll(".days");
   addListenerToDays(calendarDates);
 }
-
-viewSelect.addEventListener("change", (e) => {
-  const selected = e.target.value;
-  if (selected === "Month") {
-    loadStyle("css/monthview.css");
-    View_Mode = viewModes.MONTH_VIEW;
-    setViewMonth();
-    updateHeaderTitles();
-  } else if (selected === "Year") {
-    removeStyle("css/monthview.css");
-    View_Mode = viewModes.YEAR_VIEW;
-  }
-  updateCalendar();
-
-  setCalendarDaysClick();
-});
 
 function setViewYear() {
   setCalendarContainer(calendarContainer);
