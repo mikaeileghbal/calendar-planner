@@ -1,49 +1,56 @@
-import createYear, {
-  headerTitleYear,
-  headerTitleToday,
-  setCalendarContainer,
-  createCalendar,
-  getMonthName,
-} from "./js/calendar.js";
-
+import CalendarPlanner from "./js/CalendarPlanner.js";
 import loadStyle, { removeStyle } from "./js/styler.js";
 import Note from "./js/Note.js";
+import viewModes from "./js/ViewModes.js";
 
-// testing view ----------
-
-import CalendarPlanner from "./js/CalendarPlanner.js";
-
-//const calendarView = new CalendarView(document, null, null);
+//import createYear, { createCalendar, getMonthName } from "./js/calendar.js";
 
 const APP = (function () {
+  let View_Mode = viewModes.YEAR_VIEW;
+  let currentMonth = 0;
+
   const calendar = new CalendarPlanner(new Date());
+  const btnNextYear = document.querySelector("#btnNextYear");
+  const btnPreviousYear = document.querySelector("#btnPreviousYear");
+  const btnToday = document.querySelector("#btnToday");
 
   function init() {
     const section = document.querySelector(".section-main");
-    let btnNextYear = document.querySelector("#btnNextYear");
 
     section.replaceChild(
       calendar.getYearCalendar(),
       document.querySelector(".calendar")
     );
+
     document.querySelector(".current-year").textContent = calendar.getYear();
+    document.querySelector(".today").textContent = calendar.getToday();
   }
 
+  btnToday.addEventListener("click", today);
   btnNextYear.addEventListener("click", nextYear);
+  btnPreviousYear.addEventListener("click", previousYear);
+
+  function today() {
+    calendar.setYear(new Date().getFullYear());
+    init();
+  }
 
   function nextYear() {
-    if (View_Mode === "Year") {
-      currentYear++;
-    } else if (View_Mode === "Month") {
-      currentMonth++;
-      if (currentMonth > 11) {
-        currentMonth = 0;
-        currentYear++;
-      }
+    if (View_Mode === viewModes.YEAR_VIEW) {
+      calendar.nextYear();
+    } else {
+      calendar.nextMonth();
     }
-    calendar.nextYear();
     init();
-    //updateCalendar();
+  }
+
+  function previousYear() {
+    if (View_Mode === viewModes.YEAR_VIEW) {
+      calendar.previousYear();
+    } else {
+      calendar.previousMonth();
+    }
+    init();
   }
 
   init();
@@ -52,9 +59,6 @@ const APP = (function () {
 //-------------------------
 
 let calendarContainer = document.getElementById("calendar");
-
-let btnToday = document.querySelector("#btnToday");
-let btnPreviousYear = document.querySelector("#btnPreviousYear");
 
 let btnCloseSidePanel = document.querySelector("#btnCloseSidePanel");
 let sidePanel = document.querySelector(".side-panel");
@@ -66,9 +70,6 @@ const todoContainer = document.querySelector(".todo__container");
 const viewSelect = document.querySelector("#view");
 const btnAddNote = document.querySelector(".button--add");
 const additemcountainer = document.querySelector(".add-item__countainer");
-
-let View_Mode = "Year";
-let currentMonth = 0;
 
 console.log(btnAdd);
 console.log(btnCancel);
@@ -157,28 +158,6 @@ function addListenerToDays(days) {
     });
   });
 }
-
-btnToday.addEventListener("click", (e) => {
-  e.preventDefault();
-
-  currentYear = new Date().getFullYear();
-  currentMonth = new Date().getMonth();
-
-  updateCalendar();
-});
-
-btnPreviousYear.addEventListener("click", (e) => {
-  if (View_Mode === "Year") {
-    currentYear--;
-  } else if (View_Mode === "Month") {
-    currentMonth--;
-    if (currentMonth < 0) {
-      currentMonth = 11;
-      currentYear--;
-    }
-  }
-  updateCalendar();
-});
 
 btnCloseSidePanel.addEventListener("click", (e) => {
   console.log("clicked");
