@@ -49,10 +49,10 @@ const CalendarPlanner = (function () {
   CalendarPlanner.prototype.getYearCalendar = function () {
     let output = "<div class='year-container'>";
     for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
-      let monthDate = new Date(this.getYear(), monthIndex, 1);
-
+      //let monthDate = new Date(this.getYear(), monthIndex, 1);
+      this.date.setMonth(monthIndex);
       /* Write the calendar to the div with stored in 'calendarContainer' */
-      output += this.getMonthCalenar(monthDate);
+      output += this.getMonthCalenar(this.date);
     }
 
     return output;
