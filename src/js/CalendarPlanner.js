@@ -18,12 +18,10 @@ const CalendarPlanner = (function () {
 
   CalendarPlanner.prototype.nextMonth = function () {
     this.date.setMonth(this.date.getMonth() + 1);
-    console.log(this.date);
   };
 
   CalendarPlanner.prototype.previousMonth = function () {
     this.date.setMonth(this.date.getMonth() - 1);
-    console.log(this.date);
   };
 
   CalendarPlanner.prototype.getDayOfMonth = function () {
