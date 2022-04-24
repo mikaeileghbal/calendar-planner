@@ -43,7 +43,6 @@ class Note {
 
     this.btnAdd.addEventListener("click", (e) => {
       e.stopPropagation();
-      console.log("Done");
       this.#noteText = this.input.value;
       this.state = "NOEDIT";
       this.setState();
