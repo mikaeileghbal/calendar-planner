@@ -1,72 +1,6 @@
-const CalendarPlanner = (function () {
-  function CalendarPlanner(date) {
-    this.date = date;
-    this.currentMonth = this.date.getMonth();
-  }
-
-  CalendarPlanner.prototype.setYear = function (year) {
-    this.date.setFullYear(year);
-  };
-
-  CalendarPlanner.prototype.nextYear = function () {
-    this.date.setFullYear(this.date.getFullYear() + 1);
-  };
-
-  CalendarPlanner.prototype.previousYear = function () {
-    this.date.setFullYear(this.date.getFullYear() - 1);
-  };
-
-  CalendarPlanner.prototype.nextMonth = function () {
-    this.date.setMonth(this.date.getMonth() + 1);
-  };
-
-  CalendarPlanner.prototype.previousMonth = function () {
-    this.date.setMonth(this.date.getMonth() - 1);
-  };
-
-  CalendarPlanner.prototype.getDayOfMonth = function () {
-    return this.date.getDate();
-  };
-
-  CalendarPlanner.prototype.getMonthOfYear = function () {
-    return this._getMonthName(this.date.getMonth());
-  };
-
-  CalendarPlanner.prototype.getYear = function () {
-    return this.date.getFullYear();
-  };
-
-  CalendarPlanner.prototype.getToday = function () {
-    return this.date.getDate();
-  };
-
-  CalendarPlanner.prototype.getWeekCalendar = function () {
-    return { Week: "week" };
-  };
-
-  CalendarPlanner.prototype.getYearCalendar = function () {
-    let output = "<div class='year-container'>";
-    for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
-      //let monthDate = new Date(this.getYear(), monthIndex, 1);
-      this.date.setMonth(monthIndex);
-      /* Write the calendar to the div with stored in 'calendarContainer' */
-      output += this.getMonthCalenar(this.date);
-    }
-
-    return output;
-  };
-
-  CalendarPlanner.prototype.getMonthCalenar = function (monthDate) {
-    let calendareHtml = "<div class='month-container'>";
-    calendareHtml += "<table id='calendar_table' class='calendar_table'>";
-    calendareHtml += calCaption(monthDate);
-    calendareHtml += calWeakdayRow();
-    calendareHtml += calDays(monthDate);
-    calendareHtml += "</table>";
-    calendareHtml += "</div>";
-
-    return calendareHtml;
-  };
+export default function CalendarPlanner(date) {
+  this.date = date;
+  this.currentMonth = this.date.getMonth();
 
   /* function to write the calendar caption */
   function calCaption(monthDate) {
@@ -192,8 +126,68 @@ const CalendarPlanner = (function () {
     ];
     return monthName[index];
   }
+}
 
-  return CalendarPlanner;
-})();
+CalendarPlanner.prototype.setYear = function (year) {
+  this.date.setFullYear(year);
+};
 
-export default CalendarPlanner;
+CalendarPlanner.prototype.nextYear = function () {
+  this.date.setFullYear(this.date.getFullYear() + 1);
+};
+
+CalendarPlanner.prototype.previousYear = function () {
+  this.date.setFullYear(this.date.getFullYear() - 1);
+};
+
+CalendarPlanner.prototype.nextMonth = function () {
+  this.date.setMonth(this.date.getMonth() + 1);
+};
+
+CalendarPlanner.prototype.previousMonth = function () {
+  this.date.setMonth(this.date.getMonth() - 1);
+};
+
+CalendarPlanner.prototype.getDayOfMonth = function () {
+  return this.date.getDate();
+};
+
+CalendarPlanner.prototype.getMonthOfYear = function () {
+  return this._getMonthName(this.date.getMonth());
+};
+
+CalendarPlanner.prototype.getYear = function () {
+  return this.date.getFullYear();
+};
+
+CalendarPlanner.prototype.getToday = function () {
+  return this.date.getDate();
+};
+
+CalendarPlanner.prototype.getWeekCalendar = function () {
+  return { Week: "week" };
+};
+
+CalendarPlanner.prototype.getYearCalendar = function () {
+  let output = "<div class='year-container'>";
+  for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
+    //let monthDate = new Date(this.getYear(), monthIndex, 1);
+    this.date.setMonth(monthIndex);
+    /* Write the calendar to the div with stored in 'calendarContainer' */
+    output += this.getMonthCalenar(this.date);
+  }
+
+  return output;
+};
+
+CalendarPlanner.prototype.getMonthCalenar = function (monthDate) {
+  let calendareHtml = "<div class='month-container'>";
+  calendareHtml += "<table id='calendar_table' class='calendar_table'>";
+  calendareHtml += calCaption(monthDate);
+  calendareHtml += calWeakdayRow();
+  calendareHtml += calDays(monthDate);
+  calendareHtml += "</table>";
+  calendareHtml += "</div>";
+
+  return calendareHtml;
+};
