@@ -1,12 +1,48 @@
+import { monthName } from "./constants";
+import { createElement } from "./helper";
+
 export default function CalendarPlanner(date) {
   this.date = date;
   this.currentMonth = this.date.getMonth();
+
+  this.getYearCalendar = function () {
+    let output = "<div class='year-container'>";
+    for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
+      //let monthDate = new Date(this.getYear(), monthIndex, 1);
+      this.date.setMonth(monthIndex);
+      /* Write the calendar to the div with stored in 'calendarContainer' */
+      output += this.getMonthCalenar(this.date);
+    }
+
+    return output;
+  };
+
+  this.getMonthCalenar = function (monthDate) {
+    let calendareHtml = "<div class='month-container'>";
+    calendareHtml += "<table id='calendar_table' class='calendar_table'>";
+    calendareHtml += calCaption(monthDate);
+    calendareHtml += calWeakdayRow();
+    calendareHtml += calDays(monthDate);
+    calendareHtml += "</table>";
+    calendareHtml += "</div>";
+
+    return calendareHtml;
+  };
+
+  function getMonthName(index) {
+    return monthName[index];
+  }
+
+  this.getWeekCalendar = function () {
+    return { Week: "week" };
+  };
 
   /* function to write the calendar caption */
   function calCaption(monthDate) {
     let thisMonth = monthDate.getMonth();
 
     return (
+      //createElement("caption", getMonthName(thisMonth)).textContent =
       `<caption id="${getMonthName(thisMonth)}">` +
       getMonthName(thisMonth) +
       " " +
@@ -108,24 +144,6 @@ export default function CalendarPlanner(date) {
 
     return htmlCode;
   }
-
-  function getMonthName(index) {
-    let monthName = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    return monthName[index];
-  }
 }
 
 CalendarPlanner.prototype.setYear = function (year) {
@@ -162,32 +180,4 @@ CalendarPlanner.prototype.getYear = function () {
 
 CalendarPlanner.prototype.getToday = function () {
   return this.date.getDate();
-};
-
-CalendarPlanner.prototype.getWeekCalendar = function () {
-  return { Week: "week" };
-};
-
-CalendarPlanner.prototype.getYearCalendar = function () {
-  let output = "<div class='year-container'>";
-  for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
-    //let monthDate = new Date(this.getYear(), monthIndex, 1);
-    this.date.setMonth(monthIndex);
-    /* Write the calendar to the div with stored in 'calendarContainer' */
-    output += this.getMonthCalenar(this.date);
-  }
-
-  return output;
-};
-
-CalendarPlanner.prototype.getMonthCalenar = function (monthDate) {
-  let calendareHtml = "<div class='month-container'>";
-  calendareHtml += "<table id='calendar_table' class='calendar_table'>";
-  calendareHtml += calCaption(monthDate);
-  calendareHtml += calWeakdayRow();
-  calendareHtml += calDays(monthDate);
-  calendareHtml += "</table>";
-  calendareHtml += "</div>";
-
-  return calendareHtml;
 };
