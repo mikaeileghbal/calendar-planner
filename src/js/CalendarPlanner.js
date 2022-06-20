@@ -1,50 +1,11 @@
-const CalendarPlanner = (function () {
-  function CalendarPlanner(date) {
-    this.date = date;
-    this.currentMonth = this.date.getMonth();
-  }
+import { monthName } from "./constants";
+import { createElement } from "./helper";
 
-  CalendarPlanner.prototype.setYear = function (year) {
-    this.date.setFullYear(year);
-  };
+export default function CalendarPlanner(date) {
+  this.date = date;
+  this.currentMonth = this.date.getMonth();
 
-  CalendarPlanner.prototype.nextYear = function () {
-    this.date.setFullYear(this.date.getFullYear() + 1);
-  };
-
-  CalendarPlanner.prototype.previousYear = function () {
-    this.date.setFullYear(this.date.getFullYear() - 1);
-  };
-
-  CalendarPlanner.prototype.nextMonth = function () {
-    this.date.setMonth(this.date.getMonth() + 1);
-  };
-
-  CalendarPlanner.prototype.previousMonth = function () {
-    this.date.setMonth(this.date.getMonth() - 1);
-  };
-
-  CalendarPlanner.prototype.getDayOfMonth = function () {
-    return this.date.getDate();
-  };
-
-  CalendarPlanner.prototype.getMonthOfYear = function () {
-    return this._getMonthName(this.date.getMonth());
-  };
-
-  CalendarPlanner.prototype.getYear = function () {
-    return this.date.getFullYear();
-  };
-
-  CalendarPlanner.prototype.getToday = function () {
-    return this.date.getDate();
-  };
-
-  CalendarPlanner.prototype.getWeekCalendar = function () {
-    return { Week: "week" };
-  };
-
-  CalendarPlanner.prototype.getYearCalendar = function () {
+  this.getYearCalendar = function () {
     let output = "<div class='year-container'>";
     for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
       //let monthDate = new Date(this.getYear(), monthIndex, 1);
@@ -56,7 +17,7 @@ const CalendarPlanner = (function () {
     return output;
   };
 
-  CalendarPlanner.prototype.getMonthCalenar = function (monthDate) {
+  this.getMonthCalenar = function (monthDate) {
     let calendareHtml = "<div class='month-container'>";
     calendareHtml += "<table id='calendar_table' class='calendar_table'>";
     calendareHtml += calCaption(monthDate);
@@ -68,11 +29,20 @@ const CalendarPlanner = (function () {
     return calendareHtml;
   };
 
+  function getMonthName(index) {
+    return monthName[index];
+  }
+
+  this.getWeekCalendar = function () {
+    return { Week: "week" };
+  };
+
   /* function to write the calendar caption */
   function calCaption(monthDate) {
     let thisMonth = monthDate.getMonth();
 
     return (
+      //createElement("caption", getMonthName(thisMonth)).textContent =
       `<caption id="${getMonthName(thisMonth)}">` +
       getMonthName(thisMonth) +
       " " +
@@ -174,26 +144,40 @@ const CalendarPlanner = (function () {
 
     return htmlCode;
   }
+}
 
-  function getMonthName(index) {
-    let monthName = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    return monthName[index];
-  }
+CalendarPlanner.prototype.setYear = function (year) {
+  this.date.setFullYear(year);
+};
 
-  return CalendarPlanner;
-})();
+CalendarPlanner.prototype.nextYear = function () {
+  this.date.setFullYear(this.date.getFullYear() + 1);
+};
 
-export default CalendarPlanner;
+CalendarPlanner.prototype.previousYear = function () {
+  this.date.setFullYear(this.date.getFullYear() - 1);
+};
+
+CalendarPlanner.prototype.nextMonth = function () {
+  this.date.setMonth(this.date.getMonth() + 1);
+};
+
+CalendarPlanner.prototype.previousMonth = function () {
+  this.date.setMonth(this.date.getMonth() - 1);
+};
+
+CalendarPlanner.prototype.getDayOfMonth = function () {
+  return this.date.getDate();
+};
+
+CalendarPlanner.prototype.getMonthOfYear = function () {
+  return this._getMonthName(this.date.getMonth());
+};
+
+CalendarPlanner.prototype.getYear = function () {
+  return this.date.getFullYear();
+};
+
+CalendarPlanner.prototype.getToday = function () {
+  return this.date.getDate();
+};
