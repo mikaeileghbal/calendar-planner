@@ -3,16 +3,54 @@ import { createElement } from "./helper";
 
 export default function CalendarPlanner(date) {
   this.date = date;
-  this.currentMonth = this.date.getMonth();
 
-  this.getYearCalendar = function () {
-    let output = "<div class='year-container'>";
-    for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
-      //let monthDate = new Date(this.getYear(), monthIndex, 1);
-      this.date.setMonth(monthIndex);
-      /* Write the calendar to the div with stored in 'calendarContainer' */
-      output += this.getMonthCalenar(this.date);
-    }
+  let monthName = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  function getMonthName(index) {
+    return monthName[index];
+  }
+
+  this.getMonthOfYear = function () {
+    return getMonthName(this.date.getMonth());
+  };
+
+  this.today = function () {
+    this.date = new Date();
+  };
+}
+
+CalendarPlanner.prototype.setYear = function (year) {
+  this.date.setFullYear = year;
+};
+
+CalendarPlanner.prototype.nextYear = function () {
+  this.date.setFullYear(this.date.getFullYear() + 1);
+};
+
+CalendarPlanner.prototype.previousYear = function () {
+  this.date.setFullYear(this.date.getFullYear() - 1);
+};
+
+CalendarPlanner.prototype.getDayOfMonth = function () {
+  return this.date.getDate();
+};
+
+CalendarPlanner.prototype.getYear = function () {
+  return this.date.getFullYear();
+};
 
     return output;
   };
@@ -26,8 +64,11 @@ export default function CalendarPlanner(date) {
     calendareHtml += "</table>";
     calendareHtml += "</div>";
 
-    return calendareHtml;
-  };
+
+CalendarPlanner.prototype.getYearCalendar = function () {
+  let container = document.createElement("div");
+  container.className = "calendar";
+  container.id = "calendar";
 
   function getMonthName(index) {
     return monthName[index];
@@ -57,13 +98,33 @@ export default function CalendarPlanner(date) {
     let weakdays = ["S", "M", "T", "W", "T", "F", "S"];
     let rowHtml = "<tr>";
 
-    for (let i = 0; i < weakdays.length; i++) {
-      rowHtml += "<th class='calendar-weakdays'>" + weakdays[i] + "</th>";
-    }
 
-    rowHtml += "</tr>";
-    return rowHtml;
-  }
+CalendarPlanner.prototype.getMonthCalenar = function (monthDate) {
+  let calendareHtml = "<div class='month-container'>";
+  calendareHtml += "<table id='calendar_table' class='calendar_table'>";
+  calendareHtml += this.calCaption(monthDate);
+  calendareHtml += this.calWeakdayRow();
+  calendareHtml += this.calDays(monthDate);
+  calendareHtml += "</table>";
+  calendareHtml += "</div>";
+
+  return calendareHtml;
+};
+
+/* function to write the calendar caption */
+CalendarPlanner.prototype.calCaption = function (monthDate) {
+  // determine the current month
+  let thisMonth = monthDate.getMonth();
+
+  return (
+    `<caption id="${this.getMonthOfYear(thisMonth)}">` +
+    this.getMonthOfYear(thisMonth) +
+    " " +
+    "<span class='year' id='year'>" +
+    this.getYear() +
+    "</span></caption>"
+  );
+};
 
   //function to calculate the numbers of days in the month
   function daysInMonth(calDate) {
@@ -133,6 +194,7 @@ export default function CalendarPlanner(date) {
       daycounter++;
     }
 
+
     //add extra empty days to table
     day = new Date(calDate.getFullYear(), calDate.getMonth(), totalDays);
     weekDay = day.getDay();
@@ -150,9 +212,28 @@ CalendarPlanner.prototype.setYear = function (year) {
   this.date.setFullYear(year);
 };
 
+
+//Fnction to write table rows for each day of the month
+CalendarPlanner.prototype.calDays = function (calDate) {
+  //Determine the startin day of the month
+  let daycounter = 0;
+  let day = new Date(calDate.getFullYear(), calDate.getMonth(), 1);
+  let weekDay = day.getDay();
+
+  //Write blank cells preceding the starting day
+  let htmlCode = "<tr>";
+
+  for (let i = 0; i < weekDay; i++) {
+    htmlCode += "<td class='empty'><div class='empty-day'></div></td>";
+  }
+
+  //Write cells for each day of the month
+  let totalDays = this.daysInMonth(calDate);
+
 CalendarPlanner.prototype.nextYear = function () {
   this.date.setFullYear(this.date.getFullYear() + 1);
 };
+
 
 CalendarPlanner.prototype.previousYear = function () {
   this.date.setFullYear(this.date.getFullYear() - 1);
@@ -174,9 +255,16 @@ CalendarPlanner.prototype.getMonthOfYear = function () {
   return this._getMonthName(this.date.getMonth());
 };
 
+  for (let i = weekDay + 1; i < 7; i++) {
+    htmlCode += "<td class='empty'><div class='empty-day'></div></td>";
+  }
+
+  htmlCode += "</tr>";
+
 CalendarPlanner.prototype.getYear = function () {
   return this.date.getFullYear();
 };
+
 
 CalendarPlanner.prototype.getToday = function () {
   return this.date.getDate();

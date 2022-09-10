@@ -1,6 +1,5 @@
 * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 caption {
@@ -11,7 +10,6 @@ caption {
   height: 100%;
   margin: 0 auto;
 }
-
 .month-container .calendar_table {
   border-collapse: collapse;
   margin: 0 auto;
@@ -36,5 +34,4 @@ div.days {
 th {
   height: 5px;
   border: none;
-}
-/*# sourceMappingURL=monthview.css.map */
+}/*# sourceMappingURL=monthview.css.map */
