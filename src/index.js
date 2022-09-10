@@ -1,31 +1,70 @@
-import createYear, {
-  headerTitleYear,
-  headerTitleToday,
-  setCalendarContainer,
-  createCalendar,
-  getMonthName,
-} from "./js/calendar.js";
+// import createYear, {
+//   headerTitleYear,
+//   headerTitleToday,
+//   setCalendarContainer,
+//   createCalendar,
+//   getMonthName,
+// } from "./js/calendar.js";
 
 import loadStyle, { removeStyle } from "./js/styler.js";
 import Note from "./js/Note.js";
-
-// testing view ----------
-
 import CalendarPlanner from "./js/CalendarPlanner.js";
+import {
+  getYearTitle,
+  init,
+  nextYear,
+  previousYear,
+  showYearTitle,
+  today,
+  VIEW_MODE,
+} from "./js/UI.js";
 
-//const calendarView = new CalendarView(document, null, null);
-const calendar = new CalendarPlanner(new Date());
-const section = document.querySelector(".section-main");
-section.prepend(calendar.getYearCalendar());
-console.log(calendar.getMonthOfYear());
+window.addEventListener("load", initialCalendar);
+
+function initialCalendar() {
+  const calendar = new CalendarPlanner(new Date());
+  const container = document.querySelector(".section-main");
+  init(calendar, container);
+  displayYear();
+  // event listeners
+  const btnToday = document.querySelector("#btnToday");
+  const btnPreviousYear = document.querySelector("#btnPreviousYear");
+  const btnNextYear = document.querySelector("#btnNextYear");
+
+  function displayYear() {
+    const headerYear = document.querySelector(".current-year");
+    const headerToday = document.querySelector(".today");
+    //if (View_Mode === "Year") {
+    showYearTitle(headerYear);
+    //} else if (View_Mode === "Month") {
+
+    //headerYear.innerText = `${getMonthName(
+    // Number(currentMonth)
+    //)} ${headerTitleYear}`;
+    //}
+    //headerToday.innerText = headerTitleToday;
+  }
+
+  btnToday.addEventListener("click", (e) => {
+    today();
+    displayYear();
+  });
+
+  btnPreviousYear.addEventListener("click", (e) => {
+    previousYear();
+    displayYear();
+  });
+
+  btnNextYear.addEventListener("click", (e) => {
+    nextYear();
+    displayYear();
+  });
+}
 
 //-------------------------
 
 let calendarContainer = document.getElementById("calendar");
 
-let btnToday = document.querySelector("#btnToday");
-let btnPreviousYear = document.querySelector("#btnPreviousYear");
-let btnNextYear = document.querySelector("#btnNextYear");
 let btnCloseSidePanel = document.querySelector("#btnCloseSidePanel");
 let sidePanel = document.querySelector(".side-panel");
 let btnOpenNotes = document.querySelector("#btnOpenNotes");
@@ -40,49 +79,21 @@ const additemcountainer = document.querySelector(".add-item__countainer");
 let View_Mode = "Year";
 let currentMonth = 0;
 
-console.log(btnAdd);
-console.log(btnCancel);
-console.log(todoContainer);
-
-console.log(todoLabel);
-
-let currentYear =
-  localStorage.getItem("currentYear") || new Date().getFullYear();
-
-let thisDate = new Date(currentYear);
-thisDate.setDate(new Date().getDate());
-thisDate.setMonth(new Date().getMonth());
-console.log(thisDate);
-
-// Show clock on top of page
-let clock = document.querySelector(".time");
-
-setInterval(setTime, 1000);
-
-function setTime() {
-  clock.innerText = new Date().toLocaleTimeString();
-}
-
 function setCalendarDaysClick() {
   const calendarDates = document.querySelectorAll(".days");
   addListenerToDays(calendarDates);
 }
 
-window.addEventListener("load", () => {
-  //setViewYear();
-  //setCalendarDaysClick();
-});
-
 viewSelect.addEventListener("change", (e) => {
   const selected = e.target.value;
   if (selected === "Month") {
-    loadStyle("css/monthview.css");
-    View_Mode = "Month";
+    ui.addMonthStyle();
+    ui.viewMode = VIEW_MODE.MONTH;
     setViewMonth();
     updateHeaderTitles();
   } else if (selected === "Year") {
-    removeStyle("css/monthview.css");
-    View_Mode = "Year";
+    ui.removeMonthStyle();
+    ui.viewMode = VIEW_MODE.YEAR;
   }
   updateCalendar();
 
@@ -128,41 +139,6 @@ function addListenerToDays(days) {
   });
 }
 
-btnToday.addEventListener("click", (e) => {
-  e.preventDefault();
-
-  currentYear = new Date().getFullYear();
-  currentMonth = new Date().getMonth();
-
-  updateCalendar();
-});
-
-btnPreviousYear.addEventListener("click", (e) => {
-  if (View_Mode === "Year") {
-    currentYear--;
-  } else if (View_Mode === "Month") {
-    currentMonth--;
-    if (currentMonth < 0) {
-      currentMonth = 11;
-      currentYear--;
-    }
-  }
-  updateCalendar();
-});
-
-btnNextYear.addEventListener("click", (e) => {
-  if (View_Mode === "Year") {
-    currentYear++;
-  } else if (View_Mode === "Month") {
-    currentMonth++;
-    if (currentMonth > 11) {
-      currentMonth = 0;
-      currentYear++;
-    }
-  }
-  updateCalendar();
-});
-
 btnCloseSidePanel.addEventListener("click", (e) => {
   console.log("clicked");
   sidePanel.classList.remove("active");
@@ -192,20 +168,6 @@ function updateCalendar() {
   const calendarDates = document.querySelectorAll(".days");
   console.log("dates:", calendarDates);
   addListenerToDays(calendarDates);
-}
-
-function updateHeaderTitles() {
-  const headerYear = document.querySelector(".current-year");
-  const headerToday = document.querySelector(".today");
-  if (View_Mode === "Year") {
-    //headerYear.innerText = headerTitleYear;
-  } else if (View_Mode === "Month") {
-    console.log(Number(currentMonth));
-    //headerYear.innerText = `${getMonthName(
-    // Number(currentMonth)
-    //)} ${headerTitleYear}`;
-  }
-  headerToday.innerText = headerTitleToday;
 }
 
 function setCurrentYear(date, year) {

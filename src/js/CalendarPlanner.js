@@ -2,10 +2,6 @@ export default CalendarPlanner;
 
 function CalendarPlanner(date) {
   this.date = date;
-}
-
-CalendarPlanner.prototype._getMonthName = function (index) {
-  console.log("this month" + index);
   let monthName = [
     "January",
     "February",
@@ -20,8 +16,20 @@ CalendarPlanner.prototype._getMonthName = function (index) {
     "November",
     "December",
   ];
-  return monthName[index];
-};
+
+  function getMonthName(index) {
+    return monthName[index];
+  }
+
+  this.getMonthOfYear = function () {
+    return getMonthName(this.date.getMonth());
+  };
+
+  this.today = function () {
+    this.date = new Date();
+  };
+}
+
 CalendarPlanner.prototype.setYear = function (year) {
   this.date.setFullYear = year;
 };
@@ -38,11 +46,6 @@ CalendarPlanner.prototype.getDayOfMonth = function () {
   return this.date.getDate();
 };
 
-CalendarPlanner.prototype.getMonthOfYear = function () {
-  console.log("in month");
-  return this._getMonthName(this.date.getMonth());
-};
-
 CalendarPlanner.prototype.getYear = function () {
   return this.date.getFullYear();
 };
@@ -56,7 +59,6 @@ CalendarPlanner.prototype.getWeekCalendar = function () {
 };
 
 CalendarPlanner.prototype.getYearCalendar = function () {
-  console.log("in year");
   let container = document.createElement("div");
   container.className = "calendar";
   container.id = "calendar";
@@ -75,11 +77,9 @@ CalendarPlanner.prototype.getYearCalendar = function () {
 };
 
 CalendarPlanner.prototype.getMonthCalenar = function (monthDate) {
-  console.log("in month");
   let calendareHtml = "<div class='month-container'>";
   calendareHtml += "<table id='calendar_table' class='calendar_table'>";
   calendareHtml += this.calCaption(monthDate);
-  console.log("after captin");
   calendareHtml += this.calWeakdayRow();
   calendareHtml += this.calDays(monthDate);
   calendareHtml += "</table>";
@@ -92,12 +92,10 @@ CalendarPlanner.prototype.getMonthCalenar = function (monthDate) {
 CalendarPlanner.prototype.calCaption = function (monthDate) {
   // determine the current month
   let thisMonth = monthDate.getMonth();
-  console.log("inside calcCaption", thisMonth);
-  //determine the current year
 
   return (
-    `<caption id="${this._getMonthName(thisMonth)}">` +
-    this._getMonthName(thisMonth) +
+    `<caption id="${this.getMonthOfYear(thisMonth)}">` +
+    this.getMonthOfYear(thisMonth) +
     " " +
     "<span class='year' id='year'>" +
     this.getYear() +
@@ -121,7 +119,6 @@ CalendarPlanner.prototype.calWeakdayRow = function () {
 //function to calculate the numbers of days in the month
 CalendarPlanner.prototype.daysInMonth = function (calDate) {
   let dayCount = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
   let thisYear = calDate.getFullYear();
   let thisMonth = calDate.getMonth();
 
@@ -144,6 +141,7 @@ CalendarPlanner.prototype.calDays = function (calDate) {
 
   //Write blank cells preceding the starting day
   let htmlCode = "<tr>";
+
   for (let i = 0; i < weekDay; i++) {
     htmlCode += "<td class='empty'><div class='empty-day'></div></td>";
   }
@@ -201,6 +199,7 @@ CalendarPlanner.prototype.calDays = function (calDate) {
   for (let i = weekDay + 1; i < 7; i++) {
     htmlCode += "<td class='empty'><div class='empty-day'></div></td>";
   }
+
   htmlCode += "</tr>";
 
   return htmlCode;
