@@ -20,7 +20,7 @@ export function addMonthStyle() {
 }
 
 export function removeMonthStyle() {
-  removeStyle(css / monthview.css);
+  removeStyle("css/monthview.css");
 }
 
 export function today() {
