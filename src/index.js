@@ -1,7 +1,5 @@
-import loadStyle, { removeStyle } from "./js/styler.js";
-import Note from "./js/Note.js";
 import CalendarPlanner from "./js/CalendarPlanner.js";
-import { init, nextYear, previousYear, showYearTitle, today } from "./js/ui.js";
+import { init, nextYear, previousYear, showYearTitle, today } from "./js/app.js";
 
 window.addEventListener("load", initialCalendar);
 
@@ -10,6 +8,7 @@ function initialCalendar() {
   const container = document.querySelector(".section-main");
   init(calendar, container);
   displayYear();
+
   // event listeners
   const btnToday = document.querySelector("#btnToday");
   const btnPreviousYear = document.querySelector("#btnPreviousYear");
