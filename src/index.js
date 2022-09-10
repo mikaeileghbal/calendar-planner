@@ -1,15 +1,7 @@
 import loadStyle, { removeStyle } from "./js/styler.js";
 import Note from "./js/Note.js";
 import CalendarPlanner from "./js/CalendarPlanner.js";
-import {
-  getYearTitle,
-  init,
-  nextYear,
-  previousYear,
-  showYearTitle,
-  today,
-  VIEW_MODE,
-} from "./js/UI.js";
+import { init, nextYear, previousYear, showYearTitle, today } from "./js/ui.js";
 
 window.addEventListener("load", initialCalendar);
 
