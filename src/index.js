@@ -1,11 +1,3 @@
-// import createYear, {
-//   headerTitleYear,
-//   headerTitleToday,
-//   setCalendarContainer,
-//   createCalendar,
-//   getMonthName,
-// } from "./js/calendar.js";
-
 import loadStyle, { removeStyle } from "./js/styler.js";
 import Note from "./js/Note.js";
 import CalendarPlanner from "./js/CalendarPlanner.js";
@@ -34,10 +26,11 @@ function initialCalendar() {
   function displayYear() {
     const headerYear = document.querySelector(".current-year");
     const headerToday = document.querySelector(".today");
+
     //if (View_Mode === "Year") {
     showYearTitle(headerYear);
-    //} else if (View_Mode === "Month") {
 
+    //} else if (View_Mode === "Month") {
     //headerYear.innerText = `${getMonthName(
     // Number(currentMonth)
     //)} ${headerTitleYear}`;
